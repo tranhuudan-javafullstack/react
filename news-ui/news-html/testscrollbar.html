@@ -1,0 +1,522 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Horizontal Scrollbar with Bootstrap & jQuery</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-icon-picker@1.3.1/dist/themes/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.17/dist/fancybox/fancybox.css"/>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.6.0/css/all.min.css"
+          integrity="sha512-Kc323vGBEqzTmouAECnVceyQqyqdsSiqLQISBL29aUW4U/M7pSPA/gEUZQqv1cwx4OnYxTxve5UMg5GT6L4JJg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <style>
+        .scroll-container {
+            white-space: nowrap;
+            overflow-x: auto;
+            overflow-y: hidden;
+        }
+
+        .images-wrapper {
+            display: inline-block;
+        }
+
+        .image-container {
+            display: inline-block;
+            text-align: center;
+            margin-right: 10px;
+        }
+
+        .image-container img {
+            height: 100px;
+            border: 1px solid red;
+        }
+
+        .image-container button {
+            display: block;
+            margin: 5px auto 0;
+        }
+
+        .add-image-container {
+            display: inline-block;
+            vertical-align: top;
+            text-align: center;
+        }
+
+        .add-image-container button {
+            height: 100px;
+            width: 100px;
+            font-size: 24px;
+            border: 2px dashed #ccc;
+            background-color: #f9f9f9;
+            color: #777;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+<button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModalLabel2">
+    Thêm và sửa quảng cáo
+</button>
+<div class="container mt-4">
+    <div class="scroll-container">
+        <div class="images-wrapper">
+        </div>
+        <div class="add-image-container">
+            <button id="addImage" data-bs-toggle="modal" data-bs-target="#uploadModal"><i class="fa-solid fa-plus"></i>
+            </button>
+        </div>
+    </div>
+</div>
+<div class="modal fade" id="uploadModal" tabindex="-1" aria-labelledby="uploadModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="uploadModalLabel">Upload Slide Banner</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="uploadForm">
+                    <div class="mb-3">
+                        <label for="fileInput" class="form-label">Choose a PNG file:</label>
+                        <input type="file" class="form-control" id="fileInput" accept=".png" required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="urlDirectionInput" class="form-label">Enter URL Direction:</label>
+                        <input type="url" class="form-control" id="urlDirectionInput"
+                               placeholder="http://example.com" required>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Upload</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="modal fade" id="exampleModalLabel2" tabindex="-1" aria-labelledby="exampleModalLabel2"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Select Options</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <form id="uploadForm2">
+                <div class="modal-body">
+
+                    <!-- Select Option 1 -->
+                    <div class="mb-3">
+                        <label for="select1" class="form-label">Select Option 1</label>
+                        <select class="form-select" id="select1">
+                        </select>
+                    </div>
+
+                    <!-- Select Option 2 -->
+                    <div class="mb-3">
+                        <label for="select2" class="form-label">Select Option 2</label>
+                        <select class="form-select" id="select2">
+                        </select>
+                    </div>
+
+                    <!-- Select Option 3 -->
+                    <div class="mb-3">
+                        <label for="select3" class="form-label">Select Option 3</label>
+                        <select class="form-select" id="select3">
+                        </select>
+                    </div>
+
+                    <!-- Select Option 4 -->
+                    <div class="mb-3">
+                        <label for="select4" class="form-label">Select Option 4</label>
+                        <select class="form-select" id="select4">
+                        </select>
+                    </div>
+
+                    <!-- Select Option 5 -->
+                    <div class="mb-3">
+                        <label for="select5" class="form-label">Select Option 5</label>
+                        <select class="form-select" id="select5">
+                        </select>
+                    </div>
+
+                    <!-- Select Option 6 -->
+                    <div class="mb-3">
+                        <label for="select6" class="form-label">Select Option 6</label>
+                        <select class="form-select" id="select6">
+                        </select>
+                    </div>
+
+                    <!-- Select Option 7 -->
+                    <div class="mb-3">
+                        <label for="select7" class="form-label">Select Option 7</label>
+                        <select class="form-select" id="select7">
+                        </select>
+                    </div>
+                </div>
+                <div class="modal-footer">
+                    <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </div>
+            </form>
+
+        </div>
+    </div>
+</div>
+
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.all.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-icon-picker@1.3.1/dist/icon-picker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.17/dist/fancybox/fancybox.umd.js"></script>
+<script src="getIP.js"></script>
+<script>
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        Slideshow: {
+            progressParentEl: (slideshow) => {
+                return slideshow.instance.container;
+            }
+        },
+        Toolbar: {
+            display: {
+                left: ["infobar"],
+                middle: [
+                    "zoomIn",
+                    "zoomOut",
+                    "toggle1to1",
+                    "rotateCCW",
+                    "rotateCW",
+                    "flipX",
+                    "flipY",
+                ],
+                right: ["slideshow", "thumbs", "close"],
+            },
+        },
+        Thumbs: {
+            type: "classic",
+        }, Hash: false,
+    });
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 7000,
+        showCloseButton: true,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+        }
+    });
+
+    function getToken() {
+        const token = localStorage.getItem("TokenOwner");
+        if (!token) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Thông báo',
+                text: 'Token không tồn tại!'
+            });
+            return null;
+        }
+        return token;
+    }
+</script>
+<script>
+    $(document).ready(function () {
+
+        if (sessionStorage.getItem('configUpdateSuccess') === 'true') {
+            Toast.fire({
+                icon: 'success',
+                title: 'Thông báo',
+                text: 'File upload successfully.'
+            });
+            sessionStorage.removeItem('configUpdateSuccess');
+        }
+
+        $('.scroll-container').on('wheel', function (event) {
+            event.preventDefault();
+            this.scrollLeft += event.originalEvent.deltaY;
+        });
+    });
+</script>
+<script>
+    $('#uploadForm2').on('submit', function (e) {
+        e.preventDefault();
+        var adsId = {
+            "position_1": parseInt($('#select1').val()),
+            "position_2": parseInt($('#select2').val()),
+            "position_3": parseInt($('#select3').val()),
+            "position_4": parseInt($('#select4').val()),
+            "position_5": parseInt($('#select5').val()),
+            "position_6": parseInt($('#select6').val()),
+            "position_7": parseInt($('#select7').val())
+        };
+
+        // Hiển thị JSON trong console (hoặc gửi đến server)
+        let data = JSON.stringify({"homeConfig": {"adsId": adsId}});
+        console.log(data);
+        $.ajax({
+            url: `${baseIp}:2024/api/owner/marketing/config-home?actionType=save-ads`,
+            type: 'POST',
+            contentType: 'application/json',
+            data: data,
+            headers: {
+                'Content-Type': 'application/json',
+                'token-owner': getToken()
+            },
+            success: function (response) {
+                console.log(response)
+                if (response.status !== 1) {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Thông báo',
+                        text: 'Có lỗi xảy ra khi cập nhật cấu hình. Vui lòng thử lại sau!'
+                    });
+                } else {
+                    sessionStorage.setItem('configUpdateSuccess', 'true');
+                    location.reload();
+                }
+
+            },
+            error: function (xhr, status, error) {
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Thông báo',
+                    text: 'Có lỗi xảy ra khi cập nhật cấu hình. Vui lòng thử lại sau!'
+                });
+            }
+        });
+
+    });
+
+    function loadSlideBanners() {
+        $.ajax({
+            url: 'http://localhost:2024/api/owner/marketing/get-home-config',
+            type: 'GET',
+            headers: {
+                "token-owner": getToken()
+            },
+            success: function (response) {
+                if (response.status === 1 && response.data) {
+                    let imageListContainer = $('.images-wrapper');
+                    imageListContainer.empty();
+                    response.data.listSlideBanner.forEach(banner => {
+                        let imageName = banner.url.split('/').pop().split('.')[0]; // Lấy tên file không bao gồm phần mở rộng
+                        let imgElement = `
+                        <div class="image-container">
+                <a href="${banner.urlDirection}" data-fancybox="gallery" data-src="http://localhost:2024${banner.url}">
+                    <img src="http://localhost:2024${banner.url}" alt="Image ${imageName}">
+                </a>
+                <button class="btn btn-danger btn-sm remove-image rounded-circle" data-name="${imageName}"  ><i class="fa-solid fa-x"></i></button>
+                    </div>
+                    `;
+                        imageListContainer.append(imgElement);
+                    });
+                    $.ajax({
+                        url: `${baseIp}:2024/api/owner/marketing/get-all-ads`,
+                        method: 'GET',
+                        dataType: 'json',
+                        headers: {
+                            "token-owner": getToken()
+                        },
+                        success: function (data) {
+                            if (data.status === 1) {
+                                data = data.data;
+                                for (let i = 0; i < data.length; i++) {
+                                    if (data[i].numberPosition === 1) {
+                                        let option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" >${data[i].title}</option>`;
+                                        if (response.data.adsId && response.data.adsId.position_1 && response.data.adsId.position_1 === data[i].id) {
+                                            option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" selected>${data[i].title}</option>`;
+                                        }
+                                        $('#select1').append(option);
+                                    }
+                                    if (data[i].numberPosition === 2) {
+                                        let option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" >${data[i].title}</option>`;
+                                        if (response.data.adsId && response.data.adsId.position_2 && response.data.adsId.position_2 === data[i].id) {
+                                            option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" selected>${data[i].title}</option>`;
+                                        }
+                                        $('#select2').append(option);
+                                    }
+
+                                    if (data[i].numberPosition === 3) {
+                                        let option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" >${data[i].title}</option>`;
+                                        if (response.data.adsId && response.data.adsId.position_3 && response.data.adsId.position_3 === data[i].id) {
+                                            option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" selected>${data[i].title}</option>`;
+                                        }
+                                        $('#select3').append(option);
+                                    }
+
+                                    if (data[i].numberPosition === 4) {
+                                        let option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" >${data[i].title}</option>`;
+                                        if (response.data.adsId && response.data.adsId.position_4 && response.data.adsId.position_4 === data[i].id) {
+                                            option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" selected>${data[i].title}</option>`;
+                                        }
+                                        $('#select4').append(option);
+                                    }
+
+                                    if (data[i].numberPosition === 5) {
+                                        let option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" >${data[i].title}</option>`;
+                                        if (response.data.adsId && response.data.adsId.position_5 && response.data.adsId.position_5 === data[i].id) {
+                                            option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" selected>${data[i].title}</option>`;
+                                        }
+                                        $('#select5').append(option);
+                                    }
+
+                                    if (data[i].numberPosition === 6) {
+                                        let option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" >${data[i].title}</option>`;
+                                        if (response.data.adsId && response.data.adsId.position_6 && response.data.adsId.position_6 === data[i].id) {
+                                            option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" selected>${data[i].title}</option>`;
+                                        }
+                                        $('#select6').append(option);
+                                    }
+
+                                    if (data[i].numberPosition === 7) {
+                                        let option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" >${data[i].title}</option>`;
+                                        if (response.data.adsId && response.data.adsId.position_7 && response.data.adsId.position_7 === data[i].id) {
+                                            option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" selected>${data[i].title}</option>`;
+                                        }
+                                        $('#select7').append(option);
+                                    }
+
+                                }
+                            } else {
+                                alert('Không tìm thấy bài viết.');
+                            }
+                        },
+                        error: function (xhr, status, error) {
+                            console.error('Error fetching article details:', error);
+                            alert('Có lỗi xảy ra khi lấy thông tin bài viết.');
+                        }
+                    });
+                    // Gán sự kiện click cho các nút xóa
+                    $('.remove-image').on('click', function () {
+                        let name = $(this).data('data-name');
+
+                        // Hiển thị hộp thoại xác nhận xóa
+                        Swal.fire({
+                            title: 'Are you sure?',
+                            text: "You won't be able to revert this!",
+                            icon: 'warning',
+                            showCancelButton: true,
+                            confirmButtonColor: '#3085d6',
+                            cancelButtonColor: '#d33',
+                            confirmButtonText: 'Yes, delete it!'
+                        }).then((result) => {
+                            if (result.isConfirmed) {
+                                $.ajax({
+                                    url: 'http://localhost:2024/api/owner/marketing/delete-slide-banner',
+                                    type: 'POST',
+                                    headers: {
+                                        "token-owner": getToken()
+                                    },
+                                    data: JSON.stringify({
+                                        name: name,
+                                    }),
+                                    contentType: 'application/json',
+                                    success: function (response) {
+                                        Swal.fire(
+                                            'Deleted!',
+                                            'Your file has been deleted.',
+                                            'success'
+                                        );
+                                        loadSlideBanners();
+                                    },
+                                    error: function (xhr, status, error) {
+                                        Swal.fire(
+                                            'Error!',
+                                            'There was an error deleting your file.',
+                                            'error'
+                                        );
+                                        console.error('Error:', error);
+                                    }
+                                });
+                            }
+                        });
+                    });
+                } else {
+                    Toast.fire({
+                        icon: 'info',
+                        title: 'Thông báo',
+                        text: 'Không có dữ liệu slide banner.'
+                    });
+                }
+            },
+            error: function (xhr, status, error) {
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Thông báo',
+                    text: 'Lỗi khi tải dữ liệu. Vui lòng kiểm tra console để biết thêm thông tin.'
+                });
+                console.error('Error:', error);
+            }
+        });
+    }
+
+    loadSlideBanners();
+
+    $('#uploadForm').on('submit', function (event) {
+        event.preventDefault();
+
+        let fileInput = $('#fileInput')[0];
+        let urlDirection = $('#urlDirectionInput').val();
+
+        if (fileInput.files.length === 0) {
+            Toast.fire({
+                icon: 'error',
+                title: 'Thông báo',
+                text: 'Vui lòng chọn một file để tải lên.'
+            });
+            return;
+        }
+
+        if (!urlDirection) {
+            Toast.fire({
+                icon: 'error',
+                title: 'Thông báo',
+                text: 'Vui lòng nhập URL Direction.'
+            });
+            return;
+        }
+
+        let file = fileInput.files[0];
+        let fileName = file.name;
+        let extensionFile = fileName.split('.').pop();
+        let blob = new Blob([file], {type: file.type});
+
+        $.ajax({
+            url: `http://localhost:2024/api/owner/marketing/upload-slide-banner?fileExtension=${extensionFile}&urlDirection=${encodeURIComponent(urlDirection)}`,
+            type: 'POST',
+            data: blob,
+            headers: {
+                "token-owner": getToken()
+            },
+            processData: false,
+            contentType: file.type,
+            success: function (response) {
+                $('#uploadModal').modal('hide');
+                $('#uploadForm')[0].reset();
+                Toast.fire({
+                    icon: 'success',
+                    title: 'Thông báo',
+                    text: 'File tải lên thành công.'
+                });
+                loadSlideBanners();
+            },
+            error: function (xhr, status, error) {
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Thông báo',
+                    text: `File tải lên thất bại. Trạng thái: ${xhr.status}, Lỗi: ${error}`
+                });
+            }
+        });
+    });
+
+
+</script>
+
+</body>
+</html>

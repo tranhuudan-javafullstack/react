@@ -1,0 +1,40 @@
+/* Tăng độ bo góc của popup */
+.ant-picker-dropdown .ant-picker-panel-container {
+    border-radius: 1rem !important;
+}
+
+/* Tăng độ bo góc cho các input của start và end date */
+.ant-picker-dropdown .ant-picker-input {
+    border-radius: 1rem !important; /* Bạn có thể điều chỉnh độ bo góc */
+}
+
+/* Tùy chỉnh radius cụ thể cho từng phần input */
+.ant-picker-dropdown .ant-picker-input:first-child {
+    border-top-left-radius: 1.5rem !important;
+    border-bottom-left-radius: 1.5rem !important;
+}
+
+.ant-picker-dropdown .ant-picker-input:last-child {
+    border-top-right-radius: 1.5rem !important;
+    border-bottom-right-radius: 1.5rem !important;
+}
+
+:where(.css-dev-only-do-not-override-qnu6hi).ant-picker-dropdown .ant-picker-cell-in-view.ant-picker-cell-range-end:not(.ant-picker-cell-range-start) .ant-picker-cell-inner {
+    border-start-start-radius: 0;
+    border-end-start-radius: 0;
+    border-start-end-radius: 15px;
+    border-end-end-radius: 15px;
+}
+
+:where(.css-dev-only-do-not-override-qnu6hi).ant-picker-dropdown .ant-picker-cell-in-view.ant-picker-cell-range-start:not(.ant-picker-cell-range-end) .ant-picker-cell-inner {
+    border-start-start-radius: 15px;
+    border-end-start-radius: 15px;
+    border-start-end-radius: 0;
+    border-end-end-radius: 0;
+}
+:where(.css-dev-only-do-not-override-qnu6hi).ant-picker-dropdown .ant-picker-cell-in-view.ant-picker-cell-in-range:not(.ant-picker-cell-disabled):before, :where(.css-dev-only-do-not-override-qnu6hi).ant-picker-dropdown .ant-picker-cell-in-view.ant-picker-cell-range-start:not(.ant-picker-cell-disabled):before, :where(.css-dev-only-do-not-override-qnu6hi).ant-picker-dropdown .ant-picker-cell-in-view.ant-picker-cell-range-end:not(.ant-picker-cell-disabled):before {
+    background: #86c2f1;
+}
+:where(.css-dev-only-do-not-override-qnu6hi).ant-picker-dropdown .ant-picker-time-panel-column >li.ant-picker-time-panel-cell-selected .ant-picker-time-panel-cell-inner {
+    background: #86c2f1;
+}

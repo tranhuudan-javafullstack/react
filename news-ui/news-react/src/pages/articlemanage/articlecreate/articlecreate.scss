@@ -1,0 +1,91 @@
+@import "../../../styles/variable.scss";
+
+.disabled-button {
+    color: white !important;
+}
+
+.articlecreate {
+    .breadcrumb {
+
+        margin-bottom: 20px;
+        padding: 10px;
+        background-color: whitesmoke;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h3 {
+            margin: 0;
+            color: gray;
+        }
+    }
+
+    .content-main {
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+        margin-bottom: 20px;
+    }
+
+    h1 {
+        margin-bottom: 32px;
+        color: white;
+        text-transform: uppercase;
+    }
+
+    .main-content {
+        display: flex;
+        justify-content: center;
+        gap: 20px;
+
+        .info-article {
+            border: 2px solid $soft-bg;
+            width: 70%;
+            padding: 20px;
+
+            h2 {
+                margin-bottom: 50px;
+                text-align: left;
+            }
+
+        }
+
+        .info-ads {
+            width: 30%;
+            border: 2px solid $soft-bg;
+            padding: 20px;
+
+            h2 {
+                margin-bottom: 50px;
+                text-align: left;
+            }
+
+            form {
+                margin: 0 auto;
+            }
+
+        }
+
+
+
+        label {
+            color: white;
+        }
+
+        span {
+            color: black;
+        }
+
+        .ant-upload {
+            button {
+                color: white;
+
+                span {
+                    color: white
+                }
+
+            }
+        }
+    }
+}

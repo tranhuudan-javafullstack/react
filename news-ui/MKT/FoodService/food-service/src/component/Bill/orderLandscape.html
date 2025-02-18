@@ -1,0 +1,117 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Label Template</title>
+    <style>
+        html {
+            margin-top: 0x;
+            margin-left: 23px;
+            padding: 0;
+            height: 189.12px;
+            width: 112.32px;
+            font-family: Arial, sans-serif;
+            background-color: #f8f9fa;
+            rotate: 270deg;
+        }
+
+        .label-container {
+            width: 100%;
+            height: 100%;
+            background-color: white;
+            position: relative;
+            box-shadow: 0 0 5px rgba(0, 0, 0, 0.1);
+            padding: 10px;
+            overflow: hidden;
+        }
+
+        .header-row {
+            font-size: 10px;
+            font-weight: bold;
+            text-align: center;
+            border-bottom: 1px solid #ccc;
+            margin-bottom: 8px;
+            padding-bottom: 4px;
+        }
+
+        .left-column {
+            position: absolute;
+            top: 60px;
+            left: 0;
+            padding-right: 5px;
+            border-right: 1px solid #999;
+            height: calc(100% - 70px);
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+        }
+
+        .rotated-text {
+            writing-mode: vertical-rl;
+            transform: rotate(0);
+            white-space: nowrap;
+            font-size: 8px;
+            text-align: center;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .right-column {
+            margin-left: 30px;
+            font-size: 8px;
+            overflow: hidden;
+        }
+
+        .add-on-items {
+            font-size: 8px;
+            margin-bottom: 8px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .add-on-item {
+            margin-bottom: 2px;
+            padding-bottom: 2px;
+            font-style: italic;
+            overflow: hidden;
+            text-overflow: ellipsis;
+        }
+
+        .customer-name {
+            font-size: 8px;
+            font-weight: bold;
+            text-align: left;
+            margin-top: 10px;
+            overflow: hidden;
+            text-overflow: ellipsis;
+            position: absolute;
+            bottom: 0;
+        }
+    </style>
+</head>
+
+<body>
+
+    <div class="label-container">
+        <div class="header-row">Tên bàn: ABCDEFGABCDEFGABCDEFG - Tên món: ABCDEFGABCDEFG</div>
+        <div class="left-column">
+            <div class="rotated-text">14:30</div>
+            <div class="rotated-text">Order ID</div>
+        </div>
+        <div class="right-column">
+            <div class="add-on-items">
+                <div class="add-on-item">x2 Kem phô mai</div>
+                <div class="add-on-item">x3 Kem phô mai</div>
+                <div class="add-on-item">x4 Kem phô mai</div>
+                <div class="add-on-item">x5 Kem phô mai</div>
+                <div class="add-on-item">x6 Kem phô mai</div>
+            </div>
+            <div class="customer-name">Tên khách</div>
+        </div>
+    </div>
+
+</body>
+
+</html>
+

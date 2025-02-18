@@ -1,0 +1,134 @@
+@import '../../styles/variable.scss';
+
+.webconfig {
+    .breadcrumb {
+
+        margin-bottom: 20px;
+        padding: 10px;
+        background-color: whitesmoke;
+        border-radius: 5px;
+        display: flex;
+        justify-content: space-between;
+        align-items: center;
+
+        h3 {
+            margin: 0;
+            color: gray;
+        }
+    }
+
+    h1 {
+        margin-bottom: 32px;
+        color: white;
+        text-transform: uppercase;
+    }
+
+    .form-webconfig {
+        display: flex;
+        justify-content: center;
+        gap: 10px;
+
+        .form-footer {
+            width: 65%;
+            border: 2px solid $soft-bg;
+            padding: 20px;
+
+            h2 {
+                margin-bottom: 50px;
+                text-align: left;
+                color: white;
+            }
+
+            h3 {
+                color: white;
+            }
+
+            .ckeditors {
+                display: flex;
+                flex-wrap: wrap;
+                text-align: center;
+                justify-content: space-between;
+                gap: 10px;
+
+                .left {
+                    width: 49.5%;
+                }
+
+                .right {
+                    width: 49.5%;
+                }
+
+                .center {
+                    width: 100%;
+                }
+            }
+
+        }
+
+        .form-layout-colors {
+            width: 15%;
+            border: 2px solid $soft-bg;
+            padding: 20px;
+
+            h2 {
+                margin-bottom: 50px;
+                text-align: left;
+                color: white;
+            }
+
+            .form {
+                display: flex;
+                flex-direction: column;
+                align-items: center;
+
+                label {
+                    color: white !important;
+                }
+
+                svg {
+                    color: white !important;
+                }
+
+                span {
+                    color: black;
+                }
+
+            }
+        }
+
+        .form-category {
+            width: 20%;
+            border: 2px solid $soft-bg;
+            padding: 20px;
+
+            h2 {
+                margin-bottom: 50px;
+                text-align: left;
+                color: white;
+            }
+
+        }
+    }
+
+
+    .dynamic-delete-button {
+        position: relative;
+        top: 4px;
+        margin: 0 8px;
+        color: #999;
+        font-size: 24px;
+        cursor: pointer;
+        transition: all 0.3s;
+    }
+
+    .dynamic-delete-button:hover {
+        color: #777;
+    }
+
+    .dynamic-delete-button[disabled] {
+        cursor: not-allowed;
+        opacity: 0.5;
+    }
+
+
+}

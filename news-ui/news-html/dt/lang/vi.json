@@ -1,0 +1,23 @@
+{
+    "sEmptyTable":     "Không có dữ liệu!",
+    "sInfo":           "_START_ <b class='fa fa-long-arrow-right' aria-hidden='true' style='margin-top: 3px;    margin-bottom: 1px;'></b> _END_ <b class='fa fa-ellipsis-v' aria-hidden='true' style='margin-top: 3px;    margin-bottom: 1px;'></b> _TOTAL_",
+    "sInfoEmpty":      "0 <b class='fa fa-long-arrow-right' aria-hidden='true' style='margin-top: 3px;    margin-bottom: 1px;'></b> 0 <b class='fa fa-ellipsis-v' aria-hidden='true' style='margin-top: 3px;    margin-bottom: 1px;'></b> 0",
+    "sInfoFiltered":   "(được lọc từ _MAX_ mục)",
+    "sInfoPostFix":    "",
+    "sInfoThousands":  ",",
+    "sLengthMenu":     "Hiện thị _MENU_",
+    "sLoadingRecords": "Đang tải ...",
+    "sProcessing":     "Đang xử lý ...",
+    "sSearch":         "Tìm kiếm:",
+    "sZeroRecords":    "Không có dữ liệu phù hợp",
+    "oPaginate": {
+        "sFirst":    "<b class='fa-step-backward' aria-hidden='true' style='margin-top: 3px;    margin-bottom: 1px;'></b>",
+        "sLast":     "<b class='fa fa-step-forward' aria-hidden='true' style='margin-top: 3px;    margin-bottom: 1px;'></b>",
+        "sNext":     "<b class='fa fa-chevron-right' aria-hidden='true' style='margin-top: 3px;    margin-bottom: 1px;'></b>",
+        "sPrevious": "<b class='fa fa-chevron-left' aria-hidden='true' style='margin-top: 3px;    margin-bottom: 1px;'></b>"
+    },
+    "oAria": {
+        "sSortAscending":  ": Sắp xếp tăng dần",
+        "sSortDescending": ": Sắp xếp giảm dần"
+    }
+}

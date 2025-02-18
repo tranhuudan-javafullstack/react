@@ -1,0 +1,88 @@
+.homeconfig .breadcrumb {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: whitesmoke;
+  border-radius: 5px;
+}
+.homeconfig .head {
+  display: flex;
+  justify-content: space-between;
+}
+.homeconfig .main-content {
+  display: flex;
+  justify-content: space-between;
+  margin-bottom: 20px;
+}
+.homeconfig .main-content .left .config {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+  justify-content: center;
+}
+.homeconfig .main-content .info-ads {
+  width: 30%;
+  border: 2px solid #384256;
+  padding: 20px;
+}
+.homeconfig .main-content .info-ads h2 {
+  margin-bottom: 50px;
+  text-align: left;
+}
+.homeconfig .main-content .info-ads form {
+  margin: 0 auto;
+}
+.homeconfig .main-content .info-ads .ant-row {
+  justify-content: center;
+}
+.homeconfig .main-content .info-ads .ant-row .ant-form-item-label {
+  overflow: unset;
+}
+.homeconfig h1 {
+  margin-bottom: 32px;
+  color: white;
+  text-transform: uppercase;
+}
+.homeconfig .main-content {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+}
+.homeconfig .main-content .right {
+  border: 2px solid #384256;
+  width: 70%;
+  padding: 20px;
+}
+.homeconfig .main-content .right h2 {
+  margin-bottom: 50px;
+  text-align: left;
+  margin: 0;
+}
+.homeconfig .main-content .right .slidebanner-head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+  color: white;
+}
+.homeconfig .main-content .left {
+  width: 30%;
+  border: 2px solid #384256;
+  padding: 20px;
+}
+.homeconfig .main-content .left h2 {
+  margin-bottom: 50px;
+  text-align: left;
+}
+.homeconfig .main-content .left form {
+  margin: 0 auto;
+}
+.homeconfig .main-content label {
+  color: white;
+}
+.homeconfig .main-content span {
+  color: black;
+}
+
+.pickButton {
+  border: 1px solid white !important;
+}/*# sourceMappingURL=homeconfig.css.map */

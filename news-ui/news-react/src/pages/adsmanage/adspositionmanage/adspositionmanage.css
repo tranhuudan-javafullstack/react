@@ -1,0 +1,53 @@
+.adspositionmanage .breadcrumb {
+  margin-bottom: 20px;
+  padding: 10px;
+  background-color: whitesmoke;
+  border-radius: 5px;
+}
+.adspositionmanage h1 {
+  margin-bottom: 32px;
+  color: white;
+  text-transform: uppercase;
+}
+.adspositionmanage .main-content {
+  color: white;
+}
+.adspositionmanage .main-content .head {
+  display: flex;
+  justify-content: space-between;
+  align-items: center;
+  margin-bottom: 20px;
+}
+.adspositionmanage .main-content .ant-pagination {
+  background-color: white !important;
+  margin: 0 !important;
+  padding: 16px 0 !important;
+}
+
+.views {
+  display: flex;
+  justify-content: space-between;
+  gap: 20px;
+}
+.views .view-info table td.view-title {
+  border: 1px solid black;
+  padding: 10px;
+  width: 50%;
+  font-weight: bold;
+}
+.views .view-info table td.view-data {
+  border: 1px solid black;
+  padding: 10px;
+  width: 50%;
+}
+.views .view-ads table td.view-title {
+  border: 1px solid black;
+  padding: 10px;
+  width: 25%;
+  font-weight: bold;
+}
+.views .view-ads table td.view-data {
+  border: 1px solid black;
+  padding: 10px;
+  width: 25%;
+}/*# sourceMappingURL=adspositionmanage.css.map */

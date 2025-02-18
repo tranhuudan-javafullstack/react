@@ -1,0 +1,22 @@
+.menu .item {
+  display: flex;
+  flex-direction: column;
+  gap: 10px;
+  margin-bottom: 20px;
+}
+.menu .title {
+  font-size: 12px;
+  font-weight: 200;
+  color: #ddd;
+  text-transform: uppercase;
+}
+.menu .listItem {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+  padding: 10px;
+  border-radius: 5px;
+}
+.menu .listItem:hover {
+  background-color: #384256;
+}/*# sourceMappingURL=menu.css.map */

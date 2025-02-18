@@ -1,0 +1,247 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>Title</title>
+
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-icon-picker@1.3.1/dist/themes/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+<body>
+<div class="container my-2">
+    <form id="articleForm">
+        <div class="row p-0  mt-5 mb-3">
+            <div class="file-field" style="margin: 0 auto;">
+                <div class="btn btn-primary btn-sm float-left mt-1">
+                    <span>Chọn logo</span>
+                    <input type="file" id="logoUpload" accept="image/*">
+                </div>
+                <div class="file-path-wrapper p-0">
+                    <input class="file-path validate rounded-1" type="text"
+                           placeholder="Upload your file">
+                </div>
+                <div class="preview">
+                    <img id="logoPreview" src="#" alt="Logo Preview"
+                         style="max-width: 200px; display: none;">
+                    <input type="hidden" id="logoBase64" name="logoBase64">
+                </div>
+            </div>
+        </div>
+        <input type="hidden" class="form-control" id="articleId">
+        <div class="mb-3">
+            <label for="articleTitle" class="form-label">Title</label>
+            <input type="text" class="form-control" id="articleTitle" placeholder="Enter title"
+                   required>
+        </div>
+        <div class="mb-3">
+            <label for="articleDescription" class="form-label">Description</label>
+            <textarea class="form-control" id="articleDescription" rows="3"
+                      placeholder="Enter description" required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="articleContent" class="form-label">Content</label>
+            <textarea class="form-control" id="articleContent" rows="5" placeholder="Enter content"
+                      required></textarea>
+        </div>
+        <div class="mb-3">
+            <label for="select11" class="form-label">Select Option 1</label>
+            <select class="form-select" id="select11">
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+            </select>
+        </div>
+        <div class="mb-3">
+            <label for="select1" class="form-label">Select Option 1</label>
+            <select class="form-select" id="select1">
+                <option value="1">Option 1</option>
+                <option value="2">Option 2</option>
+                <option value="3">Option 3</option>
+            </select>
+        </div>
+
+        <!-- Select Option 2 -->
+        <div class="mb-3">
+            <label for="select2" class="form-label">Select Option 2</label>
+            <select class="form-select" id="select2">
+            </select>
+        </div>
+
+        <!-- Select Option 3 -->
+        <div class="mb-3">
+            <label for="select3" class="form-label">Select Option 3</label>
+            <select class="form-select" id="select3">
+            </select>
+        </div>
+
+        <!-- Select Option 4 -->
+        <div class="mb-3">
+            <label for="select4" class="form-label">Select Option 4</label>
+            <select class="form-select" id="select4">
+            </select>
+        </div>
+
+        <!-- Select Option 5 -->
+        <div class="mb-3">
+            <label for="select5" class="form-label">Select Option 5</label>
+            <select class="form-select" id="select5">
+            </select>
+        </div>
+
+        <!-- Select Option 6 -->
+        <div class="mb-3">
+            <label for="select6" class="form-label">Select Option 6</label>
+            <select class="form-select" id="select6">
+            </select>
+        </div>
+
+        <!-- Select Option 7 -->
+        <div class="mb-3">
+            <label for="select7" class="form-label">Select Option 7</label>
+            <select class="form-select" id="select7">
+            </select>
+        </div>
+        <button type="submit" class="btn btn-primary">Save changes</button>
+    </form>
+
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.all.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-icon-picker@1.3.1/dist/icon-picker.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+<script src="getIP.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/3.2.1/jquery.serializejson.js"
+        integrity="sha512-sQKI/4Pk8sWk7RP6xI2uDkXpIHyuaJgFX8/IGKzVj+6Wt06IcQU5s7nF6A3f0iOZpSXhlOPPNDDYKcaBlSYLNQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+</body>
+<script>
+    CKEDITOR.replace('articleContent', {
+        versionCheck: false
+    });
+
+    function getToken() {
+        const token = localStorage.getItem("TokenOwner");
+        if (!token) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Thông báo',
+                text: 'Token không tồn tại!'
+            });
+            return null;
+        }
+        return token;
+    }
+
+    <!--    lấy đường dẫn ra lấy parametter ra articleId-->
+    // gọi hàm view đổ dữ liệu ra
+    function getUrlParameter(name) {
+        name = name.replace(/[\[]/, '\\[').replace(/[\]]/, '\\]');
+        let regex = new RegExp('[\\?&]' + name + '=([^&#]*)');
+        let results = regex.exec(location.search);
+        return results === null ? '' : decodeURIComponent(results[1].replace(/\+/g, ' '));
+    }
+
+    let urlParameter = getUrlParameter('articleId');
+    console.log(urlParameter)
+    viewArticle(urlParameter);
+
+    function viewArticle(id) {
+        // Gọi API để lấy chi tiết bài viết
+        $.ajax({
+            url: `${baseIp}:2024/api/owner/marketing/get-article-detail?articleId=${id}`,
+            method: 'GET',
+            dataType: 'json',
+            headers: {
+                "token-owner": getToken()
+            },
+            success: function (data) {
+                if (data.status === 1) {
+                    // Extract data from the response
+                    const article = data.data;
+
+                    // Populate form fields with article data
+                    $('#articleId').val(article.id);
+                    $('#articleTitle').val(article.title);
+                    $('#articleDescription').val(article.content); // Assuming description is part of content
+                    CKEDITOR.instances["articleContent"].on('instanceReady', function () {
+                        CKEDITOR.instances["articleContent"].setData(article.content);
+                    });
+
+                    // Handle the image preview
+                    if (article.thumbnailBase64) {
+                        $('#logoPreview').attr('src', `data:image/png;base64,${article.thumbnailBase64}`).show();
+                        $('#logoBase64').val(article.thumbnailBase64);
+                    }
+
+                    // Populate the select fields (assuming categories are related, adjust if needed)
+                    $('#select1').val(article.category.id); // Adjust if you have more categories
+                } else {
+                    alert('Không tìm thấy bài viết.');
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching article details:', error);
+                alert('Có lỗi xảy ra khi lấy thông tin bài viết.');
+            }
+        });
+    }
+
+    getAllAds();
+
+    function getAllAds() {
+        $.ajax({
+            url: `${baseIp}:2024/api/owner/marketing/get-all-ads`,
+            method: 'GET',
+            dataType: 'json',
+            headers: {
+                "token-owner": getToken()
+            },
+            success: function (data) {
+                if (data.status === 1) {
+                    data = data.data;
+                    for (let i = 0; i < data.length; i++) {
+                        if (data[i].numberPosition === 1) {
+                            let option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" >${data[i].title}</option>`;
+                            $('#select1').append(option);
+                        }
+                        if (data[i].numberPosition === 2) {
+                            let option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" >${data[i].title}</option>`;
+                            $('#select2').append(option);
+                        }
+                        if (data[i].numberPosition === 3) {
+                            let option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" >${data[i].title}</option>`;
+                            $('#select3').append(option);
+                        }
+                        if (data[i].numberPosition === 4) {
+                            let option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" >${data[i].title}</option>`;
+                            $('#select4').append(option);
+                        }
+                        if (data[i].numberPosition === 5) {
+                            let option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" >${data[i].title}</option>`;
+                            $('#select5').append(option);
+                        }
+                        if (data[i].numberPosition === 6) {
+                            let option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" >${data[i].title}</option>`;
+                            $('#select6').append(option);
+                        }
+                        if (data[i].numberPosition === 7) {
+                            let option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" >${data[i].title}</option>`;
+                            $('#select7').append(option);
+                        }
+
+                    }
+                } else {
+                    alert('Không tìm thấy bài viết.');
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching article details:', error);
+                alert('Có lỗi xảy ra khi lấy thông tin bài viết.');
+            }
+        });
+    }
+</script>
+</html>

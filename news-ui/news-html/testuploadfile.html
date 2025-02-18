@@ -1,0 +1,319 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Slide Banner</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-icon-picker@1.3.1/dist/themes/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.17/dist/fancybox/fancybox.css"/>
+</head>
+
+<body>
+<div class="container mt-5">
+    <h1>Danh Sách Hình Ảnh</h1>
+    <div id="imageList" class="row">
+    </div>
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#editArticleModal">
+        Thêm nhóm bài viết ghim
+    </button>
+    <button type="button" class="btn btn-primary " data-bs-toggle="modal" data-bs-target="#exampleModalLabel2">
+        Thêm và sửa quảng cáo
+    </button>
+
+</div>
+
+<!-- Select Options Modal -->
+<div class="modal fade" id="exampleModalLabel2" tabindex="-1" aria-labelledby="exampleModalLabel2"
+     aria-hidden="true">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="exampleModalLabel2">Select Options</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form>
+                    <!-- Select Option 1 -->
+                    <div class="mb-3">
+                        <label for="select1" class="form-label">Select Option 1</label>
+                        <select class="form-select" id="select1">
+                        </select>
+                    </div>
+
+                    <!-- Select Option 2 -->
+                    <div class="mb-3">
+                        <label for="select2" class="form-label">Select Option 2</label>
+                        <select class="form-select" id="select2">
+                        </select>
+                    </div>
+
+                    <!-- Select Option 3 -->
+                    <div class="mb-3">
+                        <label for="select3" class="form-label">Select Option 3</label>
+                        <select class="form-select" id="select3">
+                        </select>
+                    </div>
+
+                    <!-- Select Option 4 -->
+                    <div class="mb-3">
+                        <label for="select4" class="form-label">Select Option 4</label>
+                        <select class="form-select" id="select4">
+                        </select>
+                    </div>
+
+                    <!-- Select Option 5 -->
+                    <div class="mb-3">
+                        <label for="select5" class="form-label">Select Option 5</label>
+                        <select class="form-select" id="select5">
+                        </select>
+                    </div>
+
+                    <!-- Select Option 6 -->
+                    <div class="mb-3">
+                        <label for="select6" class="form-label">Select Option 6</label>
+                        <select class="form-select" id="select6">
+                        </select>
+                    </div>
+
+                    <!-- Select Option 7 -->
+                    <div class="mb-3">
+                        <label for="select7" class="form-label">Select Option 7</label>
+                        <select class="form-select" id="select7">
+                        </select>
+                    </div>
+                </form>
+            </div>
+            <div class="modal-footer">
+                <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Close</button>
+                <button type="button" class="btn btn-primary">Save changes</button>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Edit Article Modal -->
+<div class="modal fade" id="editArticleModal" tabindex="-1" aria-labelledby="editArticleModalLabel"
+     aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="editArticleModalLabel">Edit Article</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="editArticleForm">
+                    <input type="hidden" class="form-control" id="id">
+                    <div class="mb-3">
+                        <label for="title" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="title" placeholder="Enter title">
+                    </div>
+                    <div class="mb-3">
+                        <label for="description" class="form-label">Description</label>
+                        <textarea class="form-control" id="description" rows="3"
+                                  placeholder="Enter description"></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="icon-picker" class="form-label">Choose an icon:</label>
+                        <input type="text" id="icon-picker" class="form-control" placeholder="Search icon…">
+                    </div>
+                    <div class="mb-3">
+                        <label for="articlePageId" class="form-label">articlePageId</label>
+                        <select id="articlePageId" class="form-select">
+                            <option value="" disabled selected>articlePageId</option>
+                            <option value="1">articlePageId</option>
+                        </select>
+                        <input type="hidden" id="articleMain">
+                    </div>
+                    <div class="mb-3">
+                        <label for="articleMainSelect" class="form-label">Article Main</label>
+                        <select id="articleMainSelect" class="form-select">
+                            <option value="" disabled selected>Select an article main</option>
+                            <option value="1">Article Main 1</option>
+                        </select>
+                        <input type="hidden" id="articleMain">
+                    </div>
+                    <div class="mb-3">
+                        <label class="form-label">Article List</label>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="article1" value="1">
+                            <label class="form-check-label" for="article1">Article 1</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="article2" value="2">
+                            <label class="form-check-label" for="article2">Article 2</label>
+                        </div>
+                        <div class="form-check">
+                            <input type="checkbox" class="form-check-input" id="article3" value="3">
+                            <label class="form-check-label" for="article3">Article 3</label>
+                        </div>
+                        <input type="hidden" id="articleList">
+                    </div>
+                    <button type="submit" class="btn btn-primary">Submit</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.all.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-icon-picker@1.3.1/dist/icon-picker.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.17/dist/fancybox/fancybox.umd.js"></script>
+<script src="getIP.js"></script>
+<script>
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        Slideshow: {
+            progressParentEl: (slideshow) => {
+                return slideshow.instance.container;
+            }
+        },
+        Toolbar: {
+            display: {
+                left: ["infobar"],
+                middle: [
+                    "zoomIn",
+                    "zoomOut",
+                    "toggle1to1",
+                    "rotateCCW",
+                    "rotateCW",
+                    "flipX",
+                    "flipY",
+                ],
+                right: ["slideshow", "thumbs", "close"],
+            },
+        },
+        Thumbs: {
+            type: "classic",
+        }, Hash: false,
+    });
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 7000,
+        showCloseButton: true,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+        }
+    });
+
+    function getToken() {
+        const token = localStorage.getItem("TokenOwner");
+        if (!token) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Thông báo',
+                text: 'Token không tồn tại!'
+            });
+            return null;
+        }
+        return token;
+    }
+
+    $(document).ready(function () {
+        const iconPicker = new IconPicker('#icon-picker', {
+            theme: 'default',
+            iconSource: ['FontAwesome Solid 6'],
+            closeOnSelect: true,
+            defaultValue: 'fas fa-home',
+            i18n: {
+                'input:placeholder': 'Search icon…',
+                'text:title': 'Select icon',
+                'text:empty': 'No results found…',
+                'btn:save': 'Save'
+            }
+        });
+
+        $(iconPicker).on('select', function (event, instance) {
+            console.log('Icon selected:', instance);
+        });
+
+        $(iconPicker).on('save', function (event, instance) {
+            console.log('Icon saved:', instance);
+        });
+
+        $('#icon-picker').on('click', function () {
+            iconPicker.open();
+        });
+
+        $(iconPicker).on('hide', function () {
+            console.log('Icon Picker closed');
+        });
+
+        if (sessionStorage.getItem('configUpdateSuccess') === 'true') {
+            Toast.fire({
+                icon: 'success',
+                title: 'Thông báo',
+                text: 'File upload successfully.'
+            });
+            sessionStorage.removeItem('configUpdateSuccess');
+        }
+
+        getAllAds();
+
+        function getAllAds() {
+            $.ajax({
+                url: `${baseIp}:2024/api/owner/marketing/get-all-ads`,
+                method: 'GET',
+                dataType: 'json',
+                headers: {
+                    "token-owner": getToken()
+                },
+                success: function (data) {
+                    if (data.status === 1) {
+                        data = data.data;
+                        for (let i = 0; i < data.length; i++) {
+                            if (data[i].numberPosition === 1) {
+                                let option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" >${data[i].title}</option>`;
+                                $('#select1').append(option);
+                            }
+                            if (data[i].numberPosition === 2) {
+                                let option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" >${data[i].title}</option>`;
+                                $('#select2').append(option);
+                            }
+                            if (data[i].numberPosition === 3) {
+                                let option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" >${data[i].title}</option>`;
+                                $('#select3').append(option);
+                            }
+                            if (data[i].numberPosition === 4) {
+                                let option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" >${data[i].title}</option>`;
+                                $('#select4').append(option);
+                            }
+                            if (data[i].numberPosition === 5) {
+                                let option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" >${data[i].title}</option>`;
+                                $('#select5').append(option);
+                            }
+                            if (data[i].numberPosition === 6) {
+                                let option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" >${data[i].title}</option>`;
+                                $('#select6').append(option);
+                            }
+                            if (data[i].numberPosition === 7) {
+                                let option = `<option value="${data[i].id}" data-position="${data[i].numberPosition}" >${data[i].title}</option>`;
+                                $('#select7').append(option);
+                            }
+
+                        }
+                    } else {
+                        alert('Không tìm thấy bài viết.');
+                    }
+                },
+                error: function (xhr, status, error) {
+                    console.error('Error fetching article details:', error);
+                    alert('Có lỗi xảy ra khi lấy thông tin bài viết.');
+                }
+            });
+
+            // Add more JavaScript for handling the Edit Article form if needed
+        }
+    });
+
+</script>
+</body>
+
+</html>

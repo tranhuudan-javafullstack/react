@@ -1,0 +1,107 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Dashboard</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            background-color: #383854;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            height: 100vh;
+            margin: 0;
+        }
+
+        .container {
+            display: flex;
+            flex-direction: column;
+            gap: 20px;
+        }
+
+        .card {
+            margin: 2rem;
+            box-shadow: 0px 5px 5px 5px #2c2c42;
+            background-color: #2e2e48;
+            border-radius: 15px;
+            padding: 20px;
+            width: 400px;
+            height: 200px;
+            display: flex;
+            flex-direction: column;
+            justify-content: center;
+            align-items: center;
+            text-align: center;
+        }
+
+        .card h2 {
+            color: white;
+            margin: 0 0 15px 0;
+            font-family: 'Marck Script';
+            font-style: normal;
+            font-weight: 400;
+            font-size: 48px;
+            line-height: 131.9%;
+            color: #FFFFFF;
+        }
+
+        .next-button {
+            background-color: #255dc9;
+            color: white;
+            border: none;
+            padding: 10px 20px;
+            border-radius: 20px;
+            cursor: pointer;
+            width: 25%;
+            margin-top: 15px;
+        }
+
+        .next-button:hover {
+            background-color: #255cc9c2;
+            transition: linear 0.3s;
+        }
+    </style>
+    <script src="http://localhost:2024/cache/language.js"></script>
+</head>
+
+<body>
+<div class="container">
+    <div class="card">
+        <h2 data-lang="Global_Marketing">Marketing</h2>
+        <a href="../frontend/webconfig.html" class="next-button">Next</a>
+    </div>
+    <div class="card">
+        <h2 data-lang="Global_Restaurant">Nhà Hàng</h2>
+        <a href="/owner/OwnerMenu.html" class="next-button">Next</a>
+    </div>
+</div>
+<script>
+    // Uncomment and use this section if you need dynamic language updates
+    // var languageSelect = document.getElementById("languageSelect");
+    // languageID = parseInt(localStorage.getItem('languageID'));
+    // updateLanguage();
+
+    // function changeLanguage() {
+    //     languageID = parseInt(this.value);
+    //     localStorage.setItem('languageID', languageID);
+    //     updateLanguage();
+    // }
+
+    // function updateLanguage() {
+    //     document.querySelectorAll('[data-lang]').forEach(elem => {
+    //         const key = elem.getAttribute('data-lang');
+    //         elem.textContent = Language(VL[key]);
+    //     });
+    // }
+
+    // document.getElementById('nhahang-next').addEventListener('click', function () {
+    //     let path = window.location.protocol + '//' + window.location.hostname + ':' + window.location.port + "/owner/OwnerMenu.html";
+    //     window.location.href = path;
+    // });
+</script>
+</body>
+
+</html>

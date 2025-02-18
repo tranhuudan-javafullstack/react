@@ -1,0 +1,167 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Edit Article</title>
+    <!-- Bootstrap CSS -->
+    <link href="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/css/bootstrap.min.css" rel="stylesheet">
+    <!-- Thêm CSS cho Icon Picker -->
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-icon-picker@1.3.1/dist/themes/default.min.css">
+    <!-- Thêm CSS cho Font Awesome (nếu cần) -->
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+<div class="container mt-5">
+    <!-- Nút để mở modal -->
+    <button type="button" class="btn btn-primary" data-toggle="modal" data-target="#editArticleModal">
+        Edit Article
+    </button>
+
+    <!-- Modal -->
+    <div class="modal fade " id="editArticleModal" tabindex="-1" role="dialog"
+         aria-labelledby="editArticleModalLabel" aria-hidden="true">
+        <div class="modal-dialog modal-lg" role="document">
+            <div class="modal-content">
+                <div class="modal-header">
+                    <h5 class="modal-title" id="editArticleModalLabel">Edit Article</h5>
+                    <button type="button" class="close" data-dismiss="modal" aria-label="Close">
+                        <span aria-hidden="true">&times;</span>
+                    </button>
+                </div>
+                <div class="modal-body">
+                    <form>
+                        <!-- ID -->
+                        <div class="form-group">
+                            <input type="hidden" class="form-control" id="id" placeholder="Enter ID">
+                        </div>
+
+                        <!-- Title -->
+                        <div class="form-group">
+                            <label for="title">Title</label>
+                            <input type="text" class="form-control" id="title" placeholder="Enter title">
+                        </div>
+
+                        <!-- Description -->
+                        <div class="form-group">
+                            <label for="description">Description</label>
+                            <textarea class="form-control" id="description" rows="3"
+                                      placeholder="Enter description"></textarea>
+                        </div>
+
+                        <!-- Icon Picker -->
+                        <div class="form-group">
+                            <label for="icon-picker">Choose an icon:</label>
+                            <input type="text" id="icon-picker" class="form-control" placeholder="Search icon…">
+                        </div>
+
+                        <!-- Article Main -->
+                        <div class="form-group">
+                            <label for="articleMainSelect">Article Main</label>
+                            <select id="articleMainSelect" class="form-control">
+                                <option value="" disabled selected>Select an article main</option>
+                                <option value="1">Article Main 1</option>
+                                <option value="2">Article Main 2</option>
+                                <option value="3">Article Main 3</option>
+                            </select>
+                            <!-- Hidden input to store the selected value -->
+                            <input type="hidden" id="articleMain" name="articleMain">
+                        </div>
+                        <div class="form-group">
+                            <label for="articleMainSelect">Article Main</label>
+                            <select id="articleMainSelect" class="form-control">
+                                <option value="" disabled selected>Select an article main</option>
+                                <option value="1">Article Main 1</option>
+                                <option value="2">Article Main 2</option>
+                                <option value="3">Article Main 3</option>
+                            </select>
+                            <!-- Hidden input to store the selected value -->
+                            <input type="hidden" id="articleMain" name="articleMain">
+                        </div>
+                        <!-- Article List -->
+                        <div class="form-group">
+                            <label>Article List</label>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="article1" value="1">
+                                <label class="form-check-label" for="article1">Article 1</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="article2" value="2">
+                                <label class="form-check-label" for="article2">Article 2</label>
+                            </div>
+                            <div class="form-check">
+                                <input type="checkbox" class="form-check-input" id="article3" value="3">
+                                <label class="form-check-label" for="article3">Article 3</label>
+                            </div>
+                            <!-- Hidden input to store the selected checkboxes' values -->
+                            <input type="hidden" id="articleList" name="articleList">
+                        </div>
+                        <!-- Submit Button -->
+                        <button type="submit" class="btn btn-primary">Submit</button>
+                    </form>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+<!-- Bootstrap JS and dependencies -->
+<script src="https://code.jquery.com/jquery-3.5.1.slim.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/@popperjs/core@2.5.3/dist/umd/popper.min.js"></script>
+<script src="https://stackpath.bootstrapcdn.com/bootstrap/4.5.2/js/bootstrap.min.js"></script>
+
+<!-- Thêm thư viện Icon Picker -->
+<script src="https://cdn.jsdelivr.net/npm/vanilla-icon-picker@1.3.1/dist/icon-picker.min.js"></script>
+<script>
+
+    document.addEventListener('DOMContentLoaded', () => {
+        const iconPicker = new IconPicker('#icon-picker', {
+            theme: 'default', // Hoặc 'bootstrap-5'
+            iconSource: [
+                'FontAwesome Solid 6',
+                'FontAwesome Regular 6',
+                'Material Design Icons',
+                'Iconoir'
+            ],
+            closeOnSelect: true,
+            defaultValue: 'fas fa-home', // Giá trị mặc định, ví dụ 'fas fa-home'
+            i18n: {
+                'input:placeholder': 'Search icon…',
+                'text:title': 'Select icon',
+                'text:empty': 'No results found…',
+                'btn:save': 'Save'
+            }
+        });
+    });
+
+
+    // Xử lý sự kiện khi chọn biểu tượng
+    iconPicker.on('select', instance => {
+        console.log('Icon selected:', instance);
+    });
+
+    // Xử lý sự kiện khi lưu chọn biểu tượng
+    iconPicker.on('save', instance => {
+        console.log('Icon saved:', instance);
+    });
+
+    // Mở modal picker
+    document.querySelector('#icon-picker').addEventListener('click', () => {
+        iconPicker.open();
+    });
+
+    // Đóng modal picker
+    iconPicker.on('hide', () => {
+        console.log('Icon Picker closed');
+    });
+
+    // Cập nhật giá trị của hidden input khi chọn tùy chọn trong menu select
+    document.querySelector('#articleMainSelect').addEventListener('change', function () {
+        document.querySelector('#articleMain').value = this.value;
+    });
+</script>
+</body>
+
+</html>

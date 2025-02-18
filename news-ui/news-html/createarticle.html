@@ -1,0 +1,427 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Upload Slide Banner</title>
+    <link href="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/css/bootstrap.min.css" rel="stylesheet">
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/vanilla-icon-picker@1.3.1/dist/themes/default.min.css">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0-beta3/css/all.min.css">
+</head>
+
+<body>
+<div class="container mt-5">
+    <button type="button" class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#articleModal">
+        Tạo hoặc chỉnh sửa bài viết
+    </button>
+
+    <!-- Table to display articles -->
+    <div class="mt-5">
+        <h2>Danh sách bài viết</h2>
+        <table class="table table-striped">
+            <thead>
+            <tr>
+                <th>ID</th>
+                <th>Thumbnail</th>
+                <th>Title</th>
+                <th>Category</th>
+                <th>Updated At</th>
+                <th>Actions</th>
+            </tr>
+            </thead>
+            <tbody id="articlesTableBody">
+            <!-- Data will be populated here -->
+            </tbody>
+        </table>
+    </div>
+</div>
+<div class="modal fade" id="articleModal" tabindex="-1" aria-labelledby="articleModalLabel" aria-hidden="true">
+    <div class="modal-dialog modal-lg">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h5 class="modal-title" id="articleModalLabel">Create or Edit Article</h5>
+                <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+            </div>
+            <div class="modal-body">
+                <form id="articleForm">
+                    <div class="row p-0  mt-5 mb-3">
+                        <div class="file-field" style="margin: 0 auto;">
+                            <div class="btn btn-primary btn-sm float-left mt-1">
+                                <span>Chọn logo</span>
+                                <input type="file" id="logoUpload" accept="image/*">
+                            </div>
+                            <div class="file-path-wrapper p-0">
+                                <input class="file-path validate rounded-1" type="text"
+                                       placeholder="Upload your file">
+                            </div>
+                            <div class="preview">
+                                <img id="logoPreview" src="#" alt="Logo Preview"
+                                     style="max-width: 200px; display: none;">
+                                <input type="hidden" id="logoBase64" name="logoBase64">
+                            </div>
+                        </div>
+                    </div>
+                    <input type="hidden" class="form-control" id="articleId">
+                    <div class="mb-3">
+                        <label for="articleTitle" class="form-label">Title</label>
+                        <input type="text" class="form-control" id="articleTitle" placeholder="Enter title"
+                               required>
+                    </div>
+                    <div class="mb-3">
+                        <label for="articleDescription" class="form-label">Description</label>
+                        <textarea class="form-control" id="articleDescription" rows="3"
+                                  placeholder="Enter description" required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="articleContent" class="form-label">Content</label>
+                        <textarea class="form-control" id="articleContent" rows="5" placeholder="Enter content"
+                                  required></textarea>
+                    </div>
+                    <div class="mb-3">
+                        <label for="select1" class="form-label">Select Option 1</label>
+                        <select class="form-select" id="select1">
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+                    <div class="mb-3">
+                        <label for="select1" class="form-label">Select Option 1</label>
+                        <select class="form-select" id="select11">
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+
+                    <!-- Select Option 2 -->
+                    <div class="mb-3">
+                        <label for="select2" class="form-label">Select Option 2</label>
+                        <select class="form-select" id="select2">
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+
+                    <!-- Select Option 3 -->
+                    <div class="mb-3">
+                        <label for="select3" class="form-label">Select Option 3</label>
+                        <select class="form-select" id="select3">
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+
+                    <!-- Select Option 4 -->
+                    <div class="mb-3">
+                        <label for="select4" class="form-label">Select Option 4</label>
+                        <select class="form-select" id="select4">
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+
+                    <!-- Select Option 5 -->
+                    <div class="mb-3">
+                        <label for="select5" class="form-label">Select Option 5</label>
+                        <select class="form-select" id="select5">
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+
+                    <!-- Select Option 6 -->
+                    <div class="mb-3">
+                        <label for="select6" class="form-label">Select Option 6</label>
+                        <select class="form-select" id="select6">
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+
+                    <!-- Select Option 7 -->
+                    <div class="mb-3">
+                        <label for="select7" class="form-label">Select Option 7</label>
+                        <select class="form-select" id="select7">
+                            <option value="1">Option 1</option>
+                            <option value="2">Option 2</option>
+                            <option value="3">Option 3</option>
+                        </select>
+                    </div>
+                    <button type="submit" class="btn btn-primary">Save changes</button>
+                </form>
+            </div>
+        </div>
+    </div>
+</div>
+
+<script src="https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.all.min.js"></script>
+<script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/bootstrap@5.3.0/dist/js/bootstrap.bundle.min.js"></script>
+<script src="https://cdn.jsdelivr.net/npm/vanilla-icon-picker@1.3.1/dist/icon-picker.min.js"></script>
+<script src="https://cdn.ckeditor.com/4.22.1/full/ckeditor.js"></script>
+<script src="getIP.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/3.2.1/jquery.serializejson.js"
+        integrity="sha512-sQKI/4Pk8sWk7RP6xI2uDkXpIHyuaJgFX8/IGKzVj+6Wt06IcQU5s7nF6A3f0iOZpSXhlOPPNDDYKcaBlSYLNQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script>
+    CKEDITOR.replace('articleContent',
+        {
+            versionCheck: false
+        }
+    );
+
+    function getToken() {
+        const token = localStorage.getItem("TokenOwner");
+        if (!token) {
+            Swal.fire({
+                icon: 'error',
+                title: 'Thông báo',
+                text: 'Token không tồn tại!'
+            });
+            return null;
+        }
+        return token;
+    }
+
+    function viewArticle(id) {
+        // Gọi API để lấy chi tiết bài viết
+        $.ajax({
+            url: `${baseIp}:2024/api/owner/marketing/get-article-detail?articleId=${id}`,
+            method: 'GET',
+            dataType: 'json',
+            headers: {
+                "token-owner": getToken()
+            },
+            success: function (data) {
+                console.log(data);
+                if (data.status === 1 && data.data) {
+                    // Lấy thông tin chi tiết bài viết từ response
+                    const article = data.data;
+
+                    // Tạo nội dung hiển thị bài viết
+                    const articleContent = `
+                    <h2>${article.title}</h2>
+                    <img src="data:image/png;base64,${article.thumbnailBase64}" alt="Thumbnail">
+                    <div>${article.content}</div>
+                `;
+
+                    // Hiển thị nội dung bài viết (có thể hiển thị trên modal hoặc điều hướng sang trang chi tiết)
+                    const $articleModal = $('#articleModal');
+                    if ($articleModal.length) {
+                        $articleModal.html(articleContent);
+                        $articleModal.show();
+                    } else {
+                        alert('Modal hiển thị không tồn tại!');
+                    }
+                } else {
+                    alert('Không thể lấy thông tin bài viết.');
+                }
+            },
+            error: function (xhr, status, error) {
+                console.error('Error fetching article details:', error);
+                alert('Có lỗi xảy ra khi lấy thông tin bài viết.');
+            }
+        });
+    }
+
+
+    function editArticle(id) {
+        // Implement logic to edit the article
+        alert(`Edit article ID: ${id}`);
+        // You might want to open the modal with the article details pre-filled
+    }
+
+    function deleteArticle(id) {
+        Swal.fire({
+            title: 'Bạn có chắc chắn muốn xóa?',
+            text: `Bài viết ID: ${id} sẽ bị xóa!`,
+            icon: 'warning',
+            showCancelButton: true,
+            confirmButtonColor: '#d33',
+            cancelButtonColor: '#3085d6',
+            confirmButtonText: 'Xóa',
+            cancelButtonText: 'Hủy'
+        }).then((result) => {
+            if (result.isConfirmed) {
+                $.ajax({
+                    url: `${baseIp}:2024/api/owner/marketing/delete-article/${id}`,
+                    method: 'DELETE',
+                    headers: {
+                        "token-owner": getToken()
+                    },
+                    success: function (response) {
+                        if (response.status === 1) {
+                            Swal.fire(
+                                'Đã xóa!',
+                                'Bài viết đã được xóa.',
+                                'success'
+                            );
+                            fetchArticles(); // Refresh the articles list
+                        } else {
+                            Swal.fire(
+                                'Lỗi!',
+                                'Không thể xóa bài viết.',
+                                'error'
+                            );
+                        }
+                    },
+                    error: function (error) {
+                        console.error(error);
+                        Swal.fire(
+                            'Lỗi!',
+                            'Đã xảy ra lỗi khi xóa bài viết.',
+                            'error'
+                        );
+                    }
+                });
+            }
+        });
+    }
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#logoPreview').attr('src', e.target.result);
+                $('#logoPreview').css('display', 'block');
+
+                // Lấy chuỗi base64 từ kết quả đọc file
+                var base64String = e.target.result.split(',')[1];
+                $('#logoBase64').val(base64String);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#logoUpload").change(function () {
+        readURL(this);
+    });
+
+    // Function to fetch and display articles
+    function fetchArticles() {
+        $.ajax({
+            url: `${baseIp}:2024/api/owner/marketing/getall-article-overview`,
+            method: 'GET',
+            headers: {
+                "token-owner": getToken()
+            },
+            success: function (response) {
+                if (response.status === 1) {
+                    const articles = response.data;
+                    const tableBody = $('#articlesTableBody');
+                    tableBody.empty();
+                    articles.forEach(article => {
+                        const thumbnail = `data:image/png;base64,${article.thumbnailBase64}`;
+                        const row = `
+                                <tr>
+                                    <td>${article.id}</td>
+                                    <td><img src="${thumbnail}" alt="Thumbnail" style="max-width: 100px;"></td>
+                                    <td>${article.title}</td>
+                                    <td>${article.category.name}</td>
+                                    <td>${new Date(article.updatedAt).toLocaleDateString()}</td>
+                                     <td>
+                                <button class="btn btn-info btn-sm" onclick="viewArticle(${article.id})">Xem chi tiết</button>
+                                <button class="btn btn-warning btn-sm" onclick="editArticle(${article.id})">Cập nhật</button>
+                                <button class="btn btn-danger btn-sm" onclick="deleteArticle(${article.id})">Xóa</button>
+                            </td>
+                                </tr>
+                            `;
+                        tableBody.append(row);
+                    });
+                }
+            },
+            error: function (error) {
+                console.error(error);
+            }
+        });
+    }
+
+    $(document).ready(function () {
+        fetchArticles();
+        const Toast = Swal.mixin({
+            toast: true,
+            position: 'top-end',
+            showConfirmButton: false,
+            timer: 7000,
+            showCloseButton: true,
+            timerProgressBar: true,
+            didOpen: (toast) => {
+                toast.addEventListener('mouseenter', Swal.stopTimer);
+                toast.addEventListener('mouseleave', Swal.resumeTimer);
+            }
+        });
+
+        // Function to handle form submission
+        $('#articleForm').on('submit', function (e) {
+            e.preventDefault(); // Prevent the default form submission
+
+            var formData = {
+                articleData: {
+                    id: $('#articleId').val() || 0,
+                    title: $('#articleTitle').val(),
+                    content: CKEDITOR.instances['articleContent'].getData(),
+                    description: $('#articleDescription').val() || null,
+                    thumbnailBase64: $('#logoBase64').val(),
+                    categoryId: $('#select1').val(),
+                    adsId: [
+                        $('#select2').val(),
+                        $('#select3').val(),
+                        $('#select4').val(),
+                        $('#select5').val(),
+                        $('#select6').val(),
+                        $('#select7').val()
+                    ]
+                }
+            };
+
+            console.log(formData);
+
+            $.ajax({
+                url: `${baseIp}:2024/api/owner/marketing/article-insert`,
+                method: 'POST',
+                contentType: 'application/json',
+                data: JSON.stringify(formData),
+                headers: {
+                    "token-owner": getToken()
+                },
+                success: function (response) {
+                    console.log(response);
+                    if (response.status === 1) {
+                        Toast.fire({
+                            icon: 'success',
+                            title: 'Bài viết đã được lưu thành công!'
+                        });
+                        $('#articleModal').modal('hide');
+                        fetchArticles();
+                    } else {
+                        Toast.fire({
+                            icon: 'error',
+                            title: response.message || 'Có lỗi xảy ra trong quá trình lưu bài viết!'
+                        });
+                    }
+                },
+                error: function (error) {
+                    console.error(error);
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Có lỗi xảy ra khi gửi yêu cầu!'
+                    });
+                }
+            });
+        });
+
+    });
+
+</script>
+</body>
+
+</html>

@@ -1,0 +1,1 @@
+var baseIp = "http://localhost"

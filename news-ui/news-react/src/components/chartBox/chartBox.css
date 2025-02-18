@@ -1,0 +1,39 @@
+.chartBox {
+  display: flex;
+  height: 100%;
+}
+.chartBox .boxInfo {
+  flex: 3;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+}
+.chartBox .boxInfo .title {
+  display: flex;
+  align-items: center;
+  gap: 10px;
+}
+.chartBox .chartInfo {
+  flex: 2;
+  display: flex;
+  flex-direction: column;
+  justify-content: space-between;
+  height: 100%;
+}
+.chartBox .chartInfo .chart {
+  height: 100%;
+  width: 100%;
+}
+.chartBox .chartInfo .texts {
+  display: flex;
+  text-align: right;
+  align-items: center;
+  justify-content: space-between;
+}
+.chartBox .chartInfo .texts .percentage {
+  font-size: 20px;
+  font-weight: bold;
+}
+.chartBox .chartInfo .texts .duration {
+  font-size: 14px;
+}/*# sourceMappingURL=chartBox.css.map */

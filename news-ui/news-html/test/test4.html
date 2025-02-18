@@ -1,0 +1,371 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <!-- Font Awesome -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.0.0/css/all.min.css" rel="stylesheet" />
+    <!-- Google Fonts -->
+    <link href="https://fonts.googleapis.com/css?family=Roboto:300,400,500,700&display=swap" rel="stylesheet" />
+    <!-- MDB -->
+    <link href="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.min.css" rel="stylesheet" />
+    <title>Document</title>
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.carousel.min.css"
+        integrity="sha512-tS3S5qG0BlhnQROyJXvNjeEM4UpMXHrQfTGmbQ1gKmelCxlSEBUaxhRBj/EFTzpbP4RVSrpEikbmdJobCvhE3g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+    <link rel="stylesheet"
+        href="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/assets/owl.theme.default.min.css"
+        integrity="sha512-sMXtMNL1zRzolHYKEujM2AqCLUR9F2C4/05cdbxjjLSRvMQIciEPCQZo++nk7go3BtSuK9kfa/s+a4f4i5pLkw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer" />
+</head>
+
+<body>
+    <style>
+        .card-text {
+            display: -webkit-box;
+            -webkit-box-orient: vertical;
+            -webkit-line-clamp: 5;
+            /* Number of lines before truncating */
+            overflow: hidden;
+            text-overflow: ellipsis;
+            line-height: 1.5em;
+            /* Line height */
+            max-height: 4.5em;
+            /* Max height = line-height * number of lines */
+        }
+
+
+        .card-title {
+            font-size: 1.25rem;
+            /* Slightly larger title font */
+            margin-bottom: 0.5rem;
+            /* Space between title and content */
+        }
+
+        .card-text small {
+            display: block;
+            /* Ensure small text is on its own line */
+            margin-top: 1rem;
+            /* Space above small text */
+            color: #6c757d;
+            /* Muted text color */
+        }
+    </style>
+    <header>
+
+        <div class="container d-flex justify-content-between my-2">
+            <div class="" style="width: 10%;height: auto;">
+                <a href="" class="logo">
+                    <img src="https://2sao.vn/Content/v2/img/logo.svg" alt="">
+                </a>
+            </div>
+            <div class="d-flex justify-content-center align-items-center " style="gap: 10px;">
+                <div class="user-logo">
+                    <i class="fa-regular fa-user"></i>
+                </div>
+                <div class="user-name">
+                    <span>đăng nhập</span>
+                </div>
+            </div>
+        </div>
+        <!-- Navbar -->
+        <div class="w-100 bg-danger text-white">
+            <div class="container">
+                <nav class="navbar navbar-expand-lg py-0" style="box-shadow: none;">
+                    <div class="container-fluid">
+                        <button data-mdb-collapse-init class="navbar-toggler" type="button"
+                            data-mdb-target="#navbarExample01" aria-controls="navbarExample01" aria-expanded="false"
+                            aria-label="Toggle navigation">
+                            <i class="fas fa-bars text-white"></i>
+                        </button>
+                        <div class="collapse navbar-collapse" id="navbarExample01">
+                            <ul class="navbar-nav me-auto mb-2 mb-lg-0">
+                                %1$s
+                            </ul>
+                        </div>
+                    </div>
+                </nav>
+            </div>
+        </div>
+        <!-- Navbar -->
+    </header>
+    <div class="container my-4">
+        <div class="row my-4">
+            <div class="col-3">
+                %2$s
+            </div>
+            <div class="col-6">
+                <div id="carouselExampleCaptions" class="carousel slide mb-4" data-mdb-ride="carousel"
+                    data-mdb-carousel-init>
+                    <div class="carousel-indicators">
+                        <button type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide-to="0"
+                            class="active" aria-current="true" aria-label="Slide 1"></button>
+                        <button type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide-to="1"
+                            aria-label="Slide 2"></button>
+                        <button type="button" data-mdb-target="#carouselExampleCaptions" data-mdb-slide-to="2"
+                            aria-label="Slide 3"></button>
+                    </div>
+                    <div class="carousel-inner">
+                        <div class="carousel-item active">
+                            <img src="https://2sao.vietnamnetjsc.vn/images/2024/08/22/14/32/hanquoc.jpg?width=250"
+                                class="d-block w-100" alt="Wild Landscape" />
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://2sao.vietnamnetjsc.vn/images/2024/08/22/14/32/hanquoc.jpg?width=250"
+                                class="d-block w-100" alt="Camera" />
+                        </div>
+                        <div class="carousel-item">
+                            <img src="https://2sao.vietnamnetjsc.vn/images/2024/08/22/14/32/hanquoc.jpg?width=250"
+                                class="d-block w-100" alt="Exotic Fruits" />
+                        </div>
+                    </div>
+                    <button class="carousel-control-prev" type="button" data-mdb-target="#carouselExampleCaptions"
+                        data-mdb-slide="prev">
+                        <span class="carousel-control-prev-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Previous</span>
+                    </button>
+                    <button class="carousel-control-next" type="button" data-mdb-target="#carouselExampleCaptions"
+                        data-mdb-slide="next">
+                        <span class="carousel-control-next-icon" aria-hidden="true"></span>
+                        <span class="visually-hidden">Next</span>
+                    </button>
+                </div>
+
+                <div class="owl-carousel mb-4">
+                    <div class="card w-100 shadow-0 ">
+                        <img src="https://2sao.vietnamnetjsc.vn/images/2024/08/22/14/32/hanquoc.jpg?width=250"
+                            class="rounded-0 card-img-top" alt="Sunset Over the Sea" />
+                        <div class="card-body p-2">
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the
+                                card's content.</p>
+                        </div>
+                    </div>
+                    <div class="card w-100 shadow-0 ">
+                        <img src="https://2sao.vietnamnetjsc.vn/images/2024/08/22/14/32/hanquoc.jpg?width=250"
+                            class="rounded-0 card-img-top" alt="Sunset Over the Sea" />
+                        <div class="card-body p-2">
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the
+                                card's content.</p>
+                        </div>
+                    </div>
+                    <div class="card w-100 shadow-0 ">
+                        <img src="https://2sao.vietnamnetjsc.vn/images/2024/08/22/14/32/hanquoc.jpg?width=250"
+                            class="rounded-0 card-img-top" alt="Sunset Over the Sea" />
+                        <div class="card-body p-2">
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the
+                                card's content.</p>
+                        </div>
+                    </div>
+                    <div class="card w-100 shadow-0 ">
+                        <img src="https://2sao.vietnamnetjsc.vn/images/2024/08/22/14/32/hanquoc.jpg?width=250"
+                            class="rounded-0 card-img-top" alt="Sunset Over the Sea" />
+                        <div class="card-body p-2">
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the
+                                card's content.</p>
+                        </div>
+                    </div>
+                    <div class="card w-100 shadow-0 ">
+                        <img src="https://2sao.vietnamnetjsc.vn/images/2024/08/22/14/32/hanquoc.jpg?width=250"
+                            class="rounded-0 card-img-top" alt="Sunset Over the Sea" />
+                        <div class="card-body p-2">
+                            <p class="card-text">Some quick example text to build on the card title and make up the bulk
+                                of the
+                                card's content.</p>
+                        </div>
+                    </div>
+                </div>
+
+                <div class="card mb-3 shadow-0 mb-4">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="https://2sao.vietnamnetjsc.vn/images/2024/08/22/14/32/hanquoc.jpg?width=250"
+                                style="width: 100%; height: auto;" alt="Trendy Pants and Shoes"
+                                class="img-fluid rounded-0" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body p-2 py-0 h-100">
+                                <div class="d-flex flex-column justify-content-between h-100">
+                                    <div class="">
+                                        <h5 class="card-title">Card Title</h5>
+                                        <p class="card-text">
+                                            This is a wider card with supporting text below as a natural lead-in to
+                                            additional
+                                            content. This content is a little bit longer. This is a wider card with
+                                            supporting
+                                            text below as a natural lead-in to additional content. This content is a
+                                        </p>
+                                    </div>
+                                    <p class="card-text align-self-end">
+                                        <small class="text-muted">Last updated 3 mins ago</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3 shadow-0 mb-4">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="https://2sao.vietnamnetjsc.vn/images/2024/08/22/14/32/hanquoc.jpg?width=250"
+                                style="width: 100%; height: auto;" alt="Trendy Pants and Shoes"
+                                class="img-fluid rounded-0" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body p-2 py-0 h-100">
+                                <div class="d-flex flex-column justify-content-between h-100">
+                                    <div class="">
+                                        <h5 class="card-title">Card Title</h5>
+                                        <p class="card-text">
+                                            This is a wider card with supporting text below as a natural lead-in to
+                                            additional
+                                            content. This content is a little bit longer. This is a wider card with
+                                            supporting
+                                        </p>
+                                    </div>
+                                    <p class="card-text align-self-end">
+                                        <small class="text-muted">Last updated 3 mins ago</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+                <div class="card mb-3 shadow-0 mb-4">
+                    <div class="row g-0">
+                        <div class="col-md-4">
+                            <img src="https://2sao.vietnamnetjsc.vn/images/2024/08/22/14/32/hanquoc.jpg?width=250"
+                                style="width: 100%; height: auto;" alt="Trendy Pants and Shoes"
+                                class="img-fluid rounded-0" />
+                        </div>
+                        <div class="col-md-8">
+                            <div class="card-body p-2 py-0 h-100">
+                                <div class="d-flex flex-column justify-content-between h-100">
+                                    <div class="">
+                                        <h5 class="card-title">Card Title</h5>
+                                        <p class="card-text">
+                                            This is a wider card with supporting text below as a natural lead-in to
+                                            additional
+                                            content. This content is a little bit longer. This is a wider card with
+                                            supporting
+                                            text below as a natural lead-in to additional content. This content is a
+                                            little
+                                            bit
+                                            longer. This is a wider card with supporting text below as a natural lead-in
+                                            to
+                                        </p>
+                                    </div>
+                                    <p class="card-text align-self-end">
+                                        <small class="text-muted">Last updated 3 mins ago</small>
+                                    </p>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+                </div>
+
+            </div>
+            <div class="col-3">
+                %2$s
+            </div>
+
+        </div>
+    </div>
+    <div class="container my-4">
+        <div class="row my-4">
+            <div class="col-8   ">
+                %3$s
+            </div>
+        </div>
+    </div>
+
+
+    <script type="text/javascript"
+        src="https://cdnjs.cloudflare.com/ajax/libs/mdb-ui-kit/7.3.2/mdb.umd.min.js"></script>
+
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/jquery/3.7.1/jquery.min.js"
+        integrity="sha512-v2CJ7UaYy4JwqLDIrZUI/4hqeoQieOmAZNXBeQyjo21dadnwR+8ZaIJVT8EE2iyI61OV8e6M8PP2/4hpQINQ/g=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script src="https://cdnjs.cloudflare.com/ajax/libs/OwlCarousel2/2.3.4/owl.carousel.min.js"
+        integrity="sha512-bPs7Ae6pVvhOSiIcyUClR7/q2OAsRiovw4vAkX+zJbw3ShAeeqezq50RIIcIURq7Oa20rW2n2q+fyXBNcU9lrw=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+    <script>
+        $(function () {
+            $('.owl-carousel').owlCarousel({
+                items: 3, // Số lượng item hiển thị trên màn hình
+                margin: 25, // Khoảng cách giữa các item
+                loop: true, // Bật vòng lặp vô hạn
+                center: true, // Căn giữa item
+                mouseDrag: true, // Kéo bằng chuột
+                touchDrag: true, // Kéo bằng cảm ứng
+                pullDrag: true, // Kéo để kéo toàn bộ stage
+                freeDrag: false, // Kéo item tự do
+                stagePadding: 0, // Padding trái và phải của stage
+                merge: false, // Kết hợp item
+                mergeFit: true, // Điều chỉnh kích thước các item đã kết hợp
+                autoWidth: false, // Tự động điều chỉnh chiều rộng của các item
+                startPosition: 0, // Vị trí bắt đầu
+                URLhashListener: false, // Lắng nghe thay đổi URL hash
+                nav: true, // Hiển thị nút điều hướng
+                navText: ['<', '>'], // Văn bản cho các nút điều hướng
+                navElement: 'button', // Phần tử DOM cho mỗi liên kết điều hướng
+                slideBy: 1, // Điều hướng slide theo số lượng item
+                dots: true, // Hiển thị điều hướng bằng điểm
+                dotsEach: false, // Hiển thị điểm điều hướng mỗi x item
+                dotsData: false, // Sử dụng data-dot cho điều hướng bằng điểm
+                lazyLoad: true, // Tải ảnh lười
+                lazyLoadEager: 1, // Số lượng ảnh tải sớm
+                autoplay: false, // Bật tự động phát
+                autoplayTimeout: 5000, // Thời gian giữa các lần tự động phát
+                autoplayHoverPause: true, // Dừng khi hover chuột
+                smartSpeed: 250, // Tốc độ chuyển tiếp thông minh
+                fluidSpeed: true, // Tốc độ chuyển tiếp động
+                autoplaySpeed: false, // Tốc độ tự động phát
+                navSpeed: false, // Tốc độ điều hướng
+                dotsSpeed: false, // Tốc độ điều hướng bằng điểm
+                dragEndSpeed: false, // Tốc độ khi kéo kết thúc
+                callbacks: true, // Bật các sự kiện callback
+                responsive: { // Tùy chỉnh cho các kích thước màn hình khác nhau
+                    0: {
+                        items: 1
+                    },
+                    600: {
+                        items: 2
+                    },
+                    1000: {
+                        items: 3
+                    }
+                },
+                responsiveRefreshRate: 200, // Tốc độ làm mới responsive
+                responsiveBaseElement: window, // Phần tử cơ sở cho responsive
+                video: false, // Bật tính năng video
+                videoHeight: false, // Chiều cao video
+                videoWidth: false, // Chiều rộng video
+                animateOut: 'fadeOut', // CSS3 animation class khi item ra khỏi view
+                animateIn: 'fadeIn', // CSS3 animation class khi item vào view
+                fallbackEasing: 'swing', // Easing cho CSS2 $.animate
+                info: function (event) { // Callback để lấy thông tin cơ bản
+                    var element = event.target;
+                    var name = event.type;
+                    var namespace = event.namespace;
+                    var items = event.item.count;
+                    var item = event.item.index;
+                    var pages = event.page.count;
+                    var page = event.page.index;
+                    var size = event.page.size;
+                },
+                nestedItemSelector: false, // Chọn các item lồng ghép nếu có
+                itemElement: 'div', // Phần tử DOM cho mỗi item
+                stageElement: 'div', // Phần tử DOM cho stage
+                navContainer: '.owl-nav', // Container cho điều hướng
+                dotsContainer: '.owl-dots', // Container cho điều hướng bằng điểm
+                checkVisible: true // Kiểm tra tính hiển thị
+            });
+
+        })
+    </script>
+</body>
+
+</html>

@@ -1,0 +1,702 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>title</title>
+
+    <link rel="stylesheet" type="text/css" href="../mdb4/css/bootstrap.min.css">
+    <link rel="stylesheet" type="text/css" href="../mdb4/css/mdb.min.css">
+    <link href="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.min.css
+    " rel="stylesheet">
+    <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/hover.css/2.3.1/css/hover-min.css"
+          integrity="sha512-csw0Ma4oXCAgd/d4nTcpoEoz4nYvvnk21a8VA2h2dzhPAvjbUIK6V3si7/g/HehwdunqqW18RwCJKpD7rL67Xg=="
+          crossorigin="anonymous" referrerpolicy="no-referrer"/>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.17/dist/fancybox/fancybox.css"/>
+    <style>
+        body {
+            font-family: 'Lato', sans-serif;
+            background-color: #383854;
+            color: #ffffff;
+            overflow-x: hidden;
+        }
+
+        #languageSelect {
+            background-color: #3f3f91 !important;
+            color: white !important;
+            border: none !important;
+        }
+
+        #sidebar {
+            position: fixed;
+            top: 0;
+            left: 0;
+            height: 100vh;
+            width: 250px;
+            background-color: #2e2e48;
+            transition: all 0.3s;
+            z-index: 1000;
+            overflow-y: auto;
+            /* Allow scrolling */
+            display: flex;
+            flex-direction: column;
+            justify-content: space-between;
+            /* Distribute space */
+        }
+
+        #sidebar.collapsed {
+            margin-left: -250px;
+        }
+
+        #content {
+            margin-left: 250px;
+            transition: all 0.3s;
+            padding: 20px;
+        }
+
+        #content.expanded {
+            margin-left: 0;
+        }
+
+        .sidebar-header {
+            padding: 20px;
+        }
+
+        .sidebar-item {
+            padding: 10px 20px;
+            color: #ffffff;
+            transition: all 0.3s;
+            cursor: pointer;
+        }
+
+        .sidebar-item:hover,
+        .sidebar-item.active {
+            background-color: #3f3f91;
+        }
+
+
+        @media (max-width: 768px) {
+            #sidebar {
+                margin-left: -250px;
+            }
+
+            #sidebar.active {
+                margin-left: 0;
+            }
+
+            #content {
+                margin-left: 0;
+            }
+
+            #content.active {
+                margin-left: 250px;
+            }
+        }
+
+        /* Style scrollbar */
+        #sidebar::-webkit-scrollbar {
+            width: 10px;
+        }
+
+        #sidebar::-webkit-scrollbar-thumb {
+            background-color: #3f3f91;
+            border-radius: 5px;
+        }
+
+        #sidebar::-webkit-scrollbar-track {
+            background-color: #2e2e48;
+        }
+
+        #languageSelect {
+            position: sticky;
+            top: 10px;
+            right: 10px;
+            z-index: 1002;
+            width: 150px;
+            margin-left: auto;
+            margin-right: 10px;
+        }
+
+        .table-striped > tbody > tr:nth-of-type(odd) > * {
+            color: white;
+        }
+
+        .form-control {
+            color: white !important;
+        }
+    </style>
+    <script src="http://localhost:2024/cache/language.js"></script>
+</head>
+
+<body>
+<div class=" container-fluid">
+    <div id="header"></div>
+    <div id="content">
+        <div id="pageContent">
+            <div class="d-flex justify-content-center" style="gap: 100px;">
+                <h3 class="m-0">quản lý config web</h3>
+                <button type="button" id="updateButton"
+                        class="btn btn-sm btn-outline-success text-white waves-effect m-0"> cập
+                    nhật
+                </button>
+            </div>
+            <div class="form ">
+                <form id="FormSubmit">
+                    <div class="row p-0  mt-5 mb-3">
+                        <div class="file-field" style="margin: 0 auto;">
+                            <div class="btn btn-primary btn-sm float-left mt-1">
+                                <span>Chọn logo</span>
+                                <input type="file" id="logoUpload" accept="image/*">
+                            </div>
+                            <div class="file-path-wrapper p-0">
+                                <input class="file-path validate rounded-1" type="text"
+                                       placeholder="Upload your file">
+                            </div>
+                            <div class="preview" id="preview" data-fancybox="gallery">
+                                <img id="logoPreview" src="#" alt="Logo Preview"
+                                     style="max-width: 200px; display: none;">
+                                <input type="hidden" id="logoBase64" name="logoBase64">
+                            </div>
+                        </div>
+                    </div>
+                    <div class="row p-0">
+                        <div class="col-6 " style="padding-left: 0px !important;">
+                            <select class="mdb-select md-form" data-value-type="number" name="colorId" id="color">
+                                <option value="">-- Chọn màu trang web --</option>
+                                <option value="1" selected>1</option>
+                            </select>
+                        </div>
+                        <div class="col-6" style="padding: 0px !important;">
+                            <select class="mdb-select md-form" data-value-type="number" name="layoutId" id="layout">
+                                <option value="">-- Chọn bố cục trang web --</option>
+                                <option value="1" selected>1</option>
+                            </select>
+                        </div>
+                    </div>
+                    <div class="row p-0">
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Footer:</label>
+                                <div id="footerItems">
+                                    <div class="row p-0">
+
+                                        <div class="col-5 " style="padding-left: 0px !important;">
+                                            <div class="md-form m-0 mb-4">
+                                                <input type="text" name="footerKey" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-5 " style="padding-left: 0px !important;">
+                                            <div class="md-form m-0 mb-4">
+                                                <input type="text" name="footerValue" class="form-control" required>
+                                            </div>
+                                        </div>
+                                        <div class="col-2 text-center "
+                                             style="padding-left: 0px !important;align-self: center;">
+                                            <button type="button" class="btn-sm btn-default waves-effect w-100 "
+                                                    onclick="deleteItemFooter(this)">
+                                                Xóa
+                                            </button>
+                                        </div>
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button type="button" class="btn-sm btn-outline-default"
+                                            onclick="addFooterItem()">Add
+                                        Footer
+                                        Item
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                        <div class="col-6">
+                            <div class="form-group">
+                                <label>Categories:</label>
+                                <div id="categories">
+                                    <div class="row p-0 ">
+                                        <div class="col-2 text-center"
+                                             style="padding-left: 0px !important;align-self: center;">
+                                            <button type="button" class="btn-sm btn-default waves-effect  w-100 "
+                                                    onclick="deleteItemCategory(this)">
+                                                Xóa
+                                            </button>
+                                        </div>
+                                        <div class="col-10 " style="padding-left: 0px !important;">
+                                            <div class="md-form m-0 mb-4">
+                                                <input type="hidden" name="categoryId">
+                                                <input type="text" name="categoryName" class="form-control"
+                                                       required>
+                                            </div>
+                                        </div>
+
+                                    </div>
+                                </div>
+                                <div class="text-center">
+                                    <button type="button" class="btn-sm btn-outline-default"
+                                            onclick="addCategory()">Add
+                                        Category
+                                    </button>
+                                </div>
+                            </div>
+                        </div>
+                    </div>
+
+                </form>
+            </div>
+        </div>
+
+    </div>
+</div>
+
+<script src="../mdb4/js/jquery.min.js"></script>
+<script src="../mdb4/js/bootstrap.min.js"></script>
+<script src="../mdb4/js/mdb.min.js"></script>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/jquery.serializeJSON/3.2.1/jquery.serializejson.js"
+        integrity="sha512-sQKI/4Pk8sWk7RP6xI2uDkXpIHyuaJgFX8/IGKzVj+6Wt06IcQU5s7nF6A3f0iOZpSXhlOPPNDDYKcaBlSYLNQ=="
+        crossorigin="anonymous" referrerpolicy="no-referrer"></script>
+<script src="
+    https://cdn.jsdelivr.net/npm/sweetalert2@11.12.4/dist/sweetalert2.all.min.js
+    "></script>
+<script src="https://cdn.jsdelivr.net/npm/@fancyapps/ui@5.0.17/dist/fancybox/fancybox.umd.js"></script>
+<script src="getIP.js"></script>
+<script src="sidebar.js"></script>
+<script>
+    Fancybox.bind('[data-fancybox="gallery"]', {
+        Slideshow: {
+            progressParentEl: (slideshow) => {
+                return slideshow.instance.container;
+            }
+        },
+        Toolbar: {
+            display: {
+                left: ["infobar"],
+                middle: [
+                    "zoomIn",
+                    "zoomOut",
+                    "toggle1to1",
+                    "rotateCCW",
+                    "rotateCW",
+                    "flipX",
+                    "flipY",
+                ],
+                right: ["slideshow", "thumbs", "close"],
+            },
+        },
+        Thumbs: {
+            type: "classic",
+        }, Hash: false,
+    });
+
+
+    const Toast = Swal.mixin({
+        toast: true,
+        position: 'top-end',
+        showConfirmButton: false,
+        timer: 7000,
+        showCloseButton: true,
+        timerProgressBar: true,
+        didOpen: (toast) => {
+            toast.addEventListener('mouseenter', Swal.stopTimer);
+            toast.addEventListener('mouseleave', Swal.resumeTimer);
+        }
+    });
+
+    $(document).ready(function () {
+        const $sidebar = $('#sidebar');
+        const $content = $('#content');
+        const $sidebarCollapse = $('#sidebarCollapse');
+        const $menuItems = $('.sidebar-item');
+        const $pageContent = $('#pageContent');
+        const $languageSelect = $('#languageSelect');
+        const savedLanguage = localStorage.getItem('languageID');
+
+        if (savedLanguage !== null) {
+            $languageSelect.val(savedLanguage);
+        }
+
+        $languageSelect.on('change', function () {
+            const languageID = parseInt(this.value);
+            localStorage.setItem('languageID', languageID);
+            updateLanguage();
+        });
+
+        function updateLanguage() {
+            $('[data-lang]').each(function () {
+                const key = $(this).data('lang');
+                $(this).text(Language(VL[key]));
+            });
+        }
+
+        updateLanguage();
+
+        $sidebarCollapse.on('click', function () {
+            $sidebar.toggleClass('collapsed active');
+            $content.toggleClass('expanded active');
+        });
+
+        $menuItems.on('click', function () {
+            $menuItems.removeClass('active');
+            $(this).addClass('active');
+        });
+
+        $('#logout').on('click', function () {
+            window.location.href = "/owner/OwnerLoginn.html";
+        });
+    });
+</script>
+
+<script>
+    $(document).ready(function () {
+        $('.mdb-select').materialSelect();
+        if (sessionStorage.getItem('configUpdateSuccess') === 'true') {
+
+            Toast.fire({
+                icon: 'success',
+                title: 'Thông báo',
+                text: 'Cập nhật cấu hình thành công!'
+            });
+            sessionStorage.removeItem('configUpdateSuccess');
+        }
+        $.ajax({
+            url: `${baseIp}:2024/api/owner/marketing/get-web-config`,
+            type: 'GET',
+            contentType: 'application/json',
+            headers: {
+                'Content-Type': 'application/json',
+                'token-owner': getToken()
+            },
+            success: function (response) {
+                console.log('--- DATA ---', response);
+
+                if (response.status === 1) {
+                    const data = response.data;
+
+                    // Set logo image preview
+                    if (data.logoBase64) {
+                        $('#logoPreview').attr('src', 'data:image/png;base64,' + data.logoBase64).show();
+                        $('#preview').attr('data-src', 'data:image/png;base64,' + data.logoBase64);
+
+                        $('#logoBase64').val(data.logoBase64);
+                    }
+
+                    // Populate the footer items
+                    const footerContainer = $('#footerItems');
+                    footerContainer.empty(); // Clear existing items
+                    data.footer.forEach(function (item) {
+                        const footerItemHtml = `
+                    <div class="row p-0">
+                        <div class="col-5" style="padding-left: 0px !important;">
+                            <div class="md-form m-0 mb-4">
+                                <input type="text" name="footerKey" class="form-control" value="${item.key}" required>
+                            </div>
+                        </div>
+                        <div class="col-5" style="padding-left: 0px !important;">
+                            <div class="md-form m-0 mb-4">
+                                <input type="text" name="footerValue" class="form-control" value="${item.value}" required>
+                            </div>
+                        </div>
+                        <div class="col-2 text-center" style="padding-left: 0px !important;align-self: center;">
+                            <button type="button" class="btn-sm btn-default waves-effect w-100" onclick="deleteItemFooter(this)">
+                                Xóa
+                            </button>
+                        </div>
+                    </div>`;
+                        footerContainer.append(footerItemHtml);
+                    });
+
+                    // Populate the categories
+                    const categoryContainer = $('#categories');
+                    categoryContainer.empty(); // Clear existing items
+                    data.listCategory.forEach(function (category) {
+                        const categoryItemHtml = `
+                    <div class="row p-0">
+                        <div class="col-2 text-center" style="padding-left: 0px !important;align-self: center;">
+                            <button type="button" class="btn-sm btn-default waves-effect w-100" onclick="deleteItemCategory(this)">
+                                Xóa
+                            </button>
+                        </div>
+                        <div class="col-10" style="padding-left: 0px !important;">
+                            <div class="md-form m-0 mb-4">
+                                <input type="hidden" name="categoryId" value="${category.id}">
+                                <input type="text" name="categoryName" class="form-control" value="${category.name}" required>
+                            </div>
+                        </div>
+                    </div>`;
+                        categoryContainer.append(categoryItemHtml);
+                    });
+
+                } else {
+                    // Handle the case where the response status is not 1
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Thông báo',
+                        text: 'Không thể tải cấu hình. Vui lòng thử lại sau!'
+                    });
+                }
+            },
+            error: function (xhr, status, error) {
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Thông báo',
+                    text: 'Có lỗi xảy ra khi cập nhật cấu hình. Vui lòng thử lại sau!'
+                });
+            }
+        });
+
+    });
+
+    $('#updateButton').click(function (e) {
+        e.preventDefault();
+        submitForm();
+    });
+
+    function getToken() {
+        const token = localStorage.getItem("TokenOwner");
+        if (token) {
+            return token;
+        } else {
+            Swal.fire({
+                icon: 'error',
+                title: 'Thông báo',
+                text: 'Token không tồn tại!'
+            });
+            return null;
+        }
+    }
+
+    function submitForm() {
+        // Serialize form data thành JSON
+        var formData = $('#FormSubmit').serializeJSON();
+
+        // Validate form data
+        if (!validateForm(formData)) {
+            return;
+        }
+
+        // Chuẩn bị data để submit
+        var jsonData = {
+            webConfig: {
+                layoutId: parseInt(formData.layoutId),
+                colorId: parseInt(formData.colorId),
+                footer: [],
+                listCategory: [],
+                logoBase64: $('#logoBase64').val() || ""
+            }
+        };
+
+        // Xử lý các mục footer
+        $('input[name="footerKey"]').each(function (index) {
+            var key = $(this).val();
+            var value = $('input[name="footerValue"]').eq(index).val();
+            if (key && value) {
+                jsonData.webConfig.footer.push({key: key, value: value});
+            }
+        });
+
+        // Xử lý các danh mục
+        $('input[name="categoryName"]').each(function (index) {
+            var name = $(this).val();
+            var id = $('input[name="categoryId"]').eq(index).val();
+            if (name) {
+                jsonData.webConfig.listCategory.push({id: id ? parseInt(id) : null, name: name});
+            }
+        });
+
+        $.ajax({
+            url: `${baseIp}:2024/api/owner/marketing/config-web`,
+            type: 'POST',
+            contentType: 'application/json',
+            data: JSON.stringify(jsonData),
+            headers: {
+                'Content-Type': 'application/json',
+                'token-owner': getToken()
+            },
+            success: function (response) {
+                if (response.status !== 1) {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Thông báo',
+                        text: 'Có lỗi xảy ra khi cập nhật cấu hình. Vui lòng thử lại sau!'
+                    });
+                } else {
+                    sessionStorage.setItem('configUpdateSuccess', 'true');
+                    location.reload();
+                }
+
+            },
+            error: function (xhr, status, error) {
+                Toast.fire({
+                    icon: 'error',
+                    title: 'Thông báo',
+                    text: 'Có lỗi xảy ra khi cập nhật cấu hình. Vui lòng thử lại sau!'
+                });
+            }
+        });
+    }
+
+    // Các hàm khác giữ nguyên
+    function validateForm(formData) {
+        if (!formData.colorId) {
+            Toast.fire({
+                icon: 'error',
+                title: 'Lỗi',
+                text: 'Vui lòng chọn màu trang web.'
+            });
+            return false;
+        }
+        if (!formData.layoutId) {
+            Toast.fire({
+                icon: 'error',
+                title: 'Lỗi',
+                text: 'Vui lòng chọn bố cục trang web.'
+            });
+            return false;
+        }
+
+        var hasFooterItem = false;
+        $('input[name="footerKey"]').each(function (index) {
+            var key = $(this).val();
+            var value = $('input[name="footerValue"]').eq(index).val();
+            if (key || value) {
+                hasFooterItem = true;
+                if (!key || !value) {
+                    Toast.fire({
+                        icon: 'error',
+                        title: 'Lỗi',
+                        text: 'Vui lòng điền đầy đủ cả key và value cho các mục footer.'
+                    });
+                    return false;
+                }
+            }
+        });
+        if (!hasFooterItem) {
+            Toast.fire({
+                icon: 'error',
+                title: 'Lỗi',
+                text: 'Vui lòng thêm ít nhất một mục footer.'
+            });
+            return false;
+        }
+
+        var hasCategory = false;
+        $('input[name="categoryName"]').each(function () {
+            if ($(this).val()) {
+                hasCategory = true;
+                return false;  // Thoát vòng lặp
+            }
+        });
+        if (!hasCategory) {
+            Toast.fire({
+                icon: 'error',
+                title: 'Lỗi',
+                text: 'Vui lòng thêm ít nhất một danh mục.'
+            });
+            return false;
+        }
+
+        return true;
+    }
+
+    function readURL(input) {
+        if (input.files && input.files[0]) {
+            var reader = new FileReader();
+
+            reader.onload = function (e) {
+                $('#logoPreview').attr('src', e.target.result);
+                $('#logoPreview').css('display', 'block');
+
+                // Lấy chuỗi base64 từ kết quả đọc file
+                var base64String = e.target.result.split(',')[1];
+                $('#logoBase64').val(base64String);
+            }
+
+            reader.readAsDataURL(input.files[0]);
+        }
+    }
+
+    $("#logoUpload").change(function () {
+        readURL(this);
+    });
+
+    function deleteItemFooter(button) {
+        const container = document.getElementById('footerItems');
+        const rows = container.querySelectorAll('.row');
+
+        if (rows.length > 1) {
+            button.closest('.row').remove();
+        } else {
+            Toast.fire({
+                icon: 'warning',
+                title: 'Cảnh báo',
+                text: 'Không thể xóa hàng cuối cùng. Cần có ít nhất một hàng.'
+            });
+        }
+    }
+
+    function deleteItemCategory(button) {
+        const container = document.getElementById('categories');
+        const rows = container.querySelectorAll('.row');
+
+        if (rows.length > 1) {
+            button.closest('.row').remove();
+        } else {
+            Toast.fire({
+                icon: 'warning',
+                title: 'Cảnh báo',
+                text: 'Không thể xóa hàng cuối cùng. Cần có ít nhất một hàng.'
+            });
+        }
+    }
+
+    function addFooterItem(key = '', value = '') {
+        const container = document.getElementById('footerItems');
+        const div = document.createElement('div');
+        div.className = 'row p-0';
+        div.innerHTML = `
+                            <div class="col-5" style="padding-left: 0px !important;">
+                                <div class="md-form m-0 mb-4">
+                                    <input type="text" name="footerKey" class="form-control"   required>
+                                </div>
+                            </div>
+                            <div class="col-5" style="padding-left: 0px !important;">
+                                <div class="md-form m-0 mb-4">
+                                    <input type="text" name="footerValue" class="form-control"   required>
+                                </div>
+                            </div>
+                           <div class="col-2 text-center" style="padding-left: 0px !important;">
+                                            <button type="button" class="btn-sm btn-default waves-effect w-100"
+                                                onclick="deleteItemFooter(this)">
+                                                Xóa
+                                            </button>
+                                        </div>    `;
+        container.appendChild(div);
+        const newInput = div.querySelector('input[name="footerKey"]');
+        newInput.focus();
+    }
+
+    function addCategory(name = '') {
+        const container = document.getElementById('categories');
+        const div = document.createElement('div');
+        div.className = 'row p-0';
+        div.innerHTML = `<div class="col-2 text-center" style="padding-left: 0px !important;">
+                                            <button type="button" class="btn-sm btn-default waves-effect w-100"
+                                                onclick="deleteItemCategory(this)">
+                                                Xóa
+                                            </button>
+                                        </div>     
+                           <div class="col-10 " style="padding-left: 0px !important;">
+                                        <div class="md-form m-0 mb-4">
+                                            <input type="text" name="categoryName"   class="form-control" required >
+                                        </div>
+                                    </div>
+                                `;
+        container.appendChild(div);
+        const newInput = div.querySelector('input[name="categoryName"]');
+        newInput.focus();
+    }
+
+</script>
+</body>
+
+</html>
